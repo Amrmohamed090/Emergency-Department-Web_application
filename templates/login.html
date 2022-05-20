@@ -1,0 +1,63 @@
+{% extends "layout.html" %} {% block head %}
+<link rel="stylesheet" href="../static/login.css" />
+
+{% endblock%} {% block content%}
+
+<div class="login">
+    <div class="form-card">
+        <form action="" method="POST">
+            <div class="container-login">
+
+            {{ form.hidden_tag() }}
+            <h2 class="login-title">log in</h2>
+                <div class="form-collection">
+                    {{ form.username.label(class="login-label") }}
+                    
+                    {% if form.username.errors  %}
+                    {{ form.username(class="login-field  is-invalid ") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form.username(class="login-field  ") }}
+                    {% endif  %}
+    
+                </div>
+                <div class="form-collection">
+                    {{ form.password.label(class=" login-label") }}
+    
+    
+    
+                    {% if form.password.errors  %}
+                    
+                    {{ form.password(class="login-field  is-invalid ") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    
+                    {{ form.password(class="login-field") }}
+                    {% endif  %}
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class="remember-login-radio") }}
+                    {{ form.remember.label(class="remember-login-label") }}
+                </div>
+            </fieldset>
+            <div class="form-collection">
+                {{ form.submit(class="submit-login") }}
+            </div>
+            <!-- <small class="text-muted ml-2">
+                <a href="#">forget password ?</a>
+            </small> -->
+        </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
