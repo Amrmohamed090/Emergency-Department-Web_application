@@ -1,0 +1,71 @@
+:root {
+  --main-color: #73a3de;
+  --second-main-color: #466c9b;
+}
+
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    334deg,
+    rgb(3 67 68) 50%,
+    rgb(38 38 38) 50%
+  );
+}
+
+.form-card {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.container-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* padding-top: 260px; */
+}
+
+.container-login .login-title {
+  text-transform: uppercase;
+  color: var(--main-color);
+  text-align: center;
+  font-size: 70px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.container-login .form-collection {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-login .login-label {
+  text-align: left;
+  color: var(--main-color);
+  text-transform: uppercase;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.container-login .login-field {
+  border: 1px solid var(--main-color);
+  margin-bottom: 15px;
+}
+
+.container-login .submit-login {
+  outline: none;
+  border: 1px solid var(--main-color);
+  padding: 12px 40px;
+  background-color: white;
+  color: var(--main-color);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.container-login .remember-login-label {
+  color: var(--main-color);
+  text-align: left;
+}
