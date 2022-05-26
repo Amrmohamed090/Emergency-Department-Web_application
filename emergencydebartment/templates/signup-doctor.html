@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible"content="IE=edge"/>
+    <meta name="viewport"content="width-device-width,initial-scale=1.0"/>
+    <!--    import google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300;1,400;1,500;1,900&display=swap" rel="stylesheet">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/all.min.css">
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/login.css">
+    <title>Signup a Doctor</title>
+</head>
+    <body>
+
+        <!--   navbar starts     -->
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('admin') }}">
+                    <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
+                </a>
+                    <a href="{{ url_for('admin') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
+                </div>
+            </div>
+        </nav>
+        <!--   navbar end     -->
+
+
+     <!--start section -->  
+        <section class="login-box text-center" style="height:auto;margin-top:41px;">
+            <img src="../static/images/E.svg.png" class="logo" style="width: 75px;">
+            <h1 class="text-uppercase pb-2" style="color: #ed1c24; font-weight: bolder;">Sign Up</h1>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+
+                {{ form.Fname.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.Fname(class="uid mb-3" , style="width: 260px") }}
+
+                {{ form.Sname.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.Sname(class="uid mb-3" , style="width: 260px") }}
+
+                {{ form.Lname.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.Lname(class="uid mb-3" , style="width: 260px") }}
+
+                {{ form.email.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.email(class="uid mb-3" , style="width: 260px") }}
+
+                {{ form.birth_date.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.birth_date(class="uid mb-3" , style="width: 260px") }}
+
+                {{ form.gender.label(style="color: var(--gray-color)") }}
+
+                {{ form.gender(class="uid mb-3" , style="width: 260px") }}
+                
+                {{ form.salary.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.salary(class="uid mb-3" , style="width: 260px") }}
+                
+                {{ form.speciality.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.speciality(class="uid mb-3" , style="width: 260px") }}
+                
+                {{ form.password.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.password(class="uid mb-3" , style="width: 260px") }}
+                
+                {{ form.confirm_password.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.confirm_password(class="uid mb-3" , style="width: 260px") }}
+
+
+                {{ form.submit(class="sin btn btn-primary mt-4" ,style="width: 100px;") }}
+
+
+            </form>
+        </section>
+
+
+        <section class="foot">
+            <footer style="margin-bottom:-201px;">
+                <ul class="social_icon">
+                    <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+                </ul>
+                <p style="font-size: 15px; color: var(--gray-color)">&copy; Database course Team 19</p>
+            </footer>
+        </section>
+
+        <script src="../static/script/bootstrap.bundle.min.js"></script>
+        <script src="../static/script/all.min.js"></script>
+    </body>
+</html>
