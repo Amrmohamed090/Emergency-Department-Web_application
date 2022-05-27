@@ -20,10 +20,10 @@
         <!--   navbar starts     -->
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
                     <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
                 </a>
-                    <a href="index.html" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
+                    <a href="{{ url_for('home') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
                 </div>
             </div>
         </nav>

@@ -3,7 +3,7 @@ from flask import  render_template, request, url_for ,flash, redirect
 from emergencydebartment import app, db, bcrypt
 from emergencydebartment.form import LoginForm , RegistrationForm
 from emergencydebartment.models import Admin, Doctor, Patient
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user , logout_user, login_required
 @app.route("/")
 @app.route("/home")
 def home():
@@ -16,6 +16,7 @@ def admin():
     return render_template('admin-home.html')
 
 @app.route("/register-D", methods=['GET', 'POST'])
+@login_required
 def registerD():
     form =  RegistrationForm()
     if form.validate_on_submit():
@@ -35,7 +36,8 @@ def registerD():
 @app.route("/login",methods=['GET','POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        if type(current_user._get_current_object()).__name__ == 'Admin':
+            return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = Doctor.query.filter_by(email=form.email.data).first()
@@ -48,10 +50,15 @@ def login():
             
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
-            return redirect(url_for('home'))
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('home'))
         
         else:
             flash('Please check your username and password', 'danger')
             return redirect(url_for('login'))
     return render_template('login.html',form=form)
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))

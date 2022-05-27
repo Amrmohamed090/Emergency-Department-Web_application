@@ -6,16 +6,9 @@ from flask_login import UserMixin
 def load_admin(user_id):
     return Admin.query.get(int(user_id))
 
-@login_manager.user_loader
-def load_doctor(user_id):
-    return Doctor.query.get(int(user_id))
-
-@login_manager.user_loader
-def load_patient(user_id):
-    return Patient.query.get(int(user_id))
-
 class Admin(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    user_type = db.Column(db.String(15), nullable=False, default='admin')
     email = db.Column(db.String(20),unique=True,nullable=False)
     image_file = db.Column(db.String(20),nullable = False, default='default.jpg')
     password = db.Column(db.String(60),nullable=False)
@@ -26,6 +19,7 @@ class Admin(db.Model, UserMixin):
 
 class Doctor(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    user_type = db.Column(db.String(15), nullable=False, default='Doctor')
     Fname = db.Column(db.String(20),nullable=False)
     Sname = db.Column(db.String(20))
     Lname = db.Column(db.String(20),nullable=False)
@@ -45,6 +39,7 @@ class Doctor(db.Model, UserMixin):
 
 class Patient(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    user_type = db.Column(db.String(15), nullable=False, default='Patient')
     email = db.Column(db.String(20),nullable=False)
     password = db.Column(db.String(30), nullable = False)
     Fname = db.Column(db.String(20),nullable=False)
