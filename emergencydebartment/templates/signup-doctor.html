@@ -29,14 +29,19 @@
         </nav>
         <!--   navbar end     -->
 
-
+        <div class="col-md-6 alertclass">
+            {% with messages = get_flashed_messages(with_categories = true) %} {% if
+            messages %} {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %} {% endif%} {% endwith %}
+          </div>
      <!--start section -->  
         <section class="login-box text-center" style="height:auto;margin-top:41px;">
             <img src="../static/images/E.svg.png" class="logo" style="width: 75px;">
-            <h1 class="text-uppercase pb-2" style="color: #ed1c24; font-weight: bolder;">Sign Up</h1>
+            <h1 class="text-uppercase pb-2" style="color: #ed1c24; font-weight: bolder;">Sign Up a new Doctor</h1>
             <form action="" method="POST">
                 {{ form.hidden_tag() }}
-
+                
                 {{ form.Fname.label(class="float-start" ,style="color: var(--gray-color)") }}
 
                 {{ form.Fname(class="uid mb-3" , style="width: 260px") }}

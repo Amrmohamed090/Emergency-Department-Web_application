@@ -50,6 +50,27 @@
                 >Home</a
               >
             </li>
+            {% if current_user.user_role == "Admin" %}
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerD') }}">Register a new doctor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="#about">Dashboard</a>
+            </li>
+            
+          {% elif current_user.user_role == "Doctor" %}
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerP') }}">Register a new Patient</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="#about">Dashboard</a>
+            </li>
+            
+            {% elif current_user.user_role == "Patient" %}
+    
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="#about">Contact your doctor</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link p-2 p-lg-3" href="#services">Services</a>
             </li>
@@ -59,11 +80,19 @@
             <li class="nav-item">
               <a class="nav-link p-2 p-lg-3 d-lg-none" href="#team">Team</a>
             </li>
-          </ul>
-          <a href="#team" class="team p-2 p-lg-3 d-none d-lg-block">
-            <i class="fa-solid fa-people-group"></i>
-          </a>
-          
+            
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3 d-lg-none" href="#team">Team</a>
+            </li>
+            
+            {% endif %}
             
           {% if current_user.is_authenticated %}
           <a
