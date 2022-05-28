@@ -20,10 +20,10 @@
         <!--   navbar starts     -->
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url_for('admin') }}">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
                     <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
                 </a>
-                    <a href="{{ url_for('admin') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
+                    <a href="{{ url_for('home') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
                 </div>
             </div>
         </nav>
@@ -58,6 +58,10 @@
 
                 {{ form.email(class="uid mb-3" , style="width: 260px") }}
 
+                {{ form.ssn.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.ssn(class="uid mb-3" , style="width: 260px") }}
+
                 {{ form.birth_date.label(class="float-start" ,style="color: var(--gray-color)") }}
 
                 {{ form.birth_date(class="uid mb-3" , style="width: 260px") }}
@@ -69,6 +73,10 @@
                 {{ form.salary.label(class="float-start" ,style="color: var(--gray-color)") }}
 
                 {{ form.salary(class="uid mb-3" , style="width: 260px") }}
+
+                {{ form.address.label(class="float-start" ,style="color: var(--gray-color)") }}
+
+                {{ form.address(class="uid mb-3" , style="width: 260px") }}
                 
                 {{ form.speciality.label(class="float-start" ,style="color: var(--gray-color)") }}
 

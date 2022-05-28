@@ -26,23 +26,22 @@ def home():
 
 
 
-@app.route("/admin")
-def admin():
-    return render_template('admin-home.html')
-
 @app.route("/register-D", methods=['GET', 'POST'])
 @login_required(role='Admin')
 def registerD():
     form =  DoctorRegistrationForm()
-    print(dir(form))
+    
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        doctor = Doctor(Fname=form.Fname.data,Lname=form.Lname.data,Sname=form.Sname.data,email=form.email.data, password=hashed_password, gender=form.gender.data,salary=form.salary.data)
+        doctor = Doctor(Fname=form.Fname.data, Sname=form.Sname.data,Lname=form.Lname.data
+                        ,email=form.email.data,ssn = form.ssn.data, password=hashed_password, gender=form.gender.data,
+                        salary=form.salary.data, birth_date=form.birth_date.data,
+                        address=form.address.data, speciallity = form.speciality.data)
         db.session.add(doctor)
         db.session.commit()
-        print('done')
         flash('a doctor has been registered', 'successus')
         return redirect(url_for('home'))
+    
     if form.errors:
         flash('please inter valid fields', 'danger')
         return redirect(url_for('registerD'))
@@ -53,8 +52,11 @@ def registerD():
 def registerP():
     form =  PatientRegistrationForm()
     if form.validate_on_submit():
-        #hashed_password = bcrypt.generate_password_hash(form.password).decode('utf-8')
-        #doctor = Doctor(Fname=form.Fname.data,Lname=form.Lname.data,Sname=form.Sname.data,email=form.email.data, pasword=hashed_password, gender=form.gender.data,salary=form.salary.data)
+        hashed_password = bcrypt.generate_password_hash(form.password).decode('utf-8')
+        patient = Patient(Fname=form.Fname.data, Sname=form.Sname.data,Lname=form.Lname.data
+                        ,email=form.email.data,ssn = form.ssn.data, password=hashed_password, gender=form.gender.data,
+                         birth_date=form.birth_date.data,
+                        address=form.address.data)
         print('done')
         flash('a Patient has been registered', 'successus')
         return redirect(url_for('home'))
@@ -71,8 +73,7 @@ def registerP():
 def login():
     print(type(current_user._get_current_object()).__name__)
     if current_user.is_authenticated:
-        if type(current_user._get_current_object()).__name__ == 'Admin':
-            return redirect(url_for('home'))
+        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = Doctor.query.filter_by(email=form.email.data).first()
