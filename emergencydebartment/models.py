@@ -1,3 +1,5 @@
+import email
+from email.policy import default
 from emergencydebartment import db, login_manager
 from datetime import datetime
 from flask_login import UserMixin
@@ -38,6 +40,9 @@ class Doctor(User):
 class Patient(User):
     id = db.Column(db.Integer, db.ForeignKey('user_table.id'),primary_key=True)
     report = db.relationship('Report',  backref='patient', lazy=True, foreign_keys = 'Report.patient_id')
+    
+    email = db.Column(db.String(20),unique=True,nullable=False, default = 'patient@hospital.com')
+    
     
     def __repr__(self):
         return f"Patient('{self.Fname}','{self.Lname}')"

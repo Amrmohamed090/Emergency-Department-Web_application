@@ -5,6 +5,7 @@
       id="landing"
       class="landing d-flex justify-content-center align-items-center"
     >
+    {% if current_user.is_anonymous or current_user.user_role == 'Patient' %}
       <div class="text-center">
         <img
           class="E-logo mb-2"
@@ -19,6 +20,58 @@
           ><i class="fa-solid fa-phone"></i> Call</a
         >
       </div>
+      {% elif current_user.user_role == 'Doctor'%}
+      
+      
+      <div class="text-center">
+        <img
+          class="E-logo mb-2"
+          src="../static/images/add2.png"
+          width="100px"
+        />
+        <h1><i>Add report</i></h1>
+        <p class="mb-2"><i>Create a new Emengency report</i></p>
+        <a
+          class="calling_btn btn rounded-pill main-btn"
+          href="{{ url_for('new_report') }}"
+          ><i class="fa-solid fa-plus"></i> Add</a
+        >
+      </div>
+
+
+      <div class="text-center">
+        <img
+          class="E-logo mb-2"
+          src="../static/images/addac2.png"
+          width="100px"
+        />
+        <h1><i>Add Patient</i></h1>
+        <p class="mb-2"><i>Register a new patient</i></p>
+        <a
+          class="calling_btn btn rounded-pill main-btn"
+          href="{{ url_for('registerP') }}"
+          ><i class="fa-solid fa-user"></i> Register</a
+        >
+      </div>
+
+      <div class="text-center">
+        <img
+          class="E-logo mb-2"
+          src="../static/images/search2.png"
+          width="100px"
+        />
+        <h1><i>Search</i></h1>
+        <p class="mb-2"><i>Search for patient or report</i></p>
+        <a
+          class="calling_btn btn rounded-pill main-btn"
+          href="{{ url_for('new_report') }}"
+          ><i class="fa-solid fa-search"></i> search</a
+        >
+      </div>
+
+
+      {% endif %}
+
     </section>
     <!--   Landing Section ends     -->
     <!--  services section starts      -->

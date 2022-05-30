@@ -16,7 +16,11 @@
     <link rel="stylesheet" href="../static/styles/all.min.css" />
     <link rel="stylesheet" href="../static/styles/bootstrap.min.css" />
     <link rel="stylesheet" href="../static/styles/style.css" />
-    <title>ُEmergency Department</title>
+    {% if title %}
+    <title>Emergency - {{title}}</title>
+    {% else %}
+    <title>Emergency Department</title>
+    {% endif %}
   </head>
   <body>
     <!--   navbar starts     -->
@@ -63,7 +67,7 @@
               <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerP') }}">Register a new Patient</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link p-2 p-lg-3" href="#about">Dashboard</a>
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('new_report') }}">Add new report</a>
             </li>
             
             {% elif current_user.user_role == "Patient" %}

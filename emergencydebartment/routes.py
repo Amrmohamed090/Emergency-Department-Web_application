@@ -1,10 +1,19 @@
 
+from turtle import title
 from flask import  render_template, request, url_for ,flash, redirect, session
 from emergencydebartment import app, db, bcrypt, login_manager
-from emergencydebartment.form import LoginForm , DoctorRegistrationForm, PatientRegistrationForm
-from emergencydebartment.models import Doctor, Patient
+from emergencydebartment.form import LoginForm , DoctorRegistrationForm, PatientRegistrationForm, ReportForm
+from emergencydebartment.models import Doctor, Patient, Report, Images
 from flask_login import login_user, current_user , logout_user, login_required
 from functools import wraps
+import os
+from werkzeug.utils import secure_filename
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'pdf'])
+
+def allowed_file(filename):
+	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 
 def login_required(role="ANY"):
@@ -45,7 +54,7 @@ def registerD():
     if form.errors:
         flash('please inter valid fields', 'danger')
         return redirect(url_for('registerD'))
-    return render_template('signup-doctor.html', form=form)
+    return render_template('signup-doctor.html', form=form , title = "Register a Doctor")
 
 @app.route("/register-P", methods=['GET', 'POST'])
 @login_required(role='Doctor')
@@ -57,14 +66,41 @@ def registerP():
                         ,email=form.email.data,ssn = form.ssn.data, password=hashed_password, gender=form.gender.data,
                          birth_date=form.birth_date.data,
                         address=form.address.data)
-        print('done')
+        db.session.add(patient)
+        db.session.commit()
+    
         flash('a Patient has been registered', 'successus')
         return redirect(url_for('home'))
         
         
-    return render_template('signup-patient.html', form=form)
+    return render_template('signup-patient.html', form=form, title = "Register a Patient")
 
 
+@app.route("/report/new", methods=['GET', 'POST'])
+@login_required(role = 'Doctor')
+def new_report():
+    form = ReportForm()
+    if form.validate_on_submit():
+        id = Patient.query.filter_by(ssn = form.ssn.data).first().id
+        
+        files = request.files.getlist('files[]')
+        file_names = []
+        for file in files:
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file_names.append(filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            
+        
+        
+        
+        report = Report( patient_id=id, doctor_id=current_user.id,
+                             statement = form.statement.data)
+        db.session.add(report)
+        db.session.commit()
+        flash('Your post has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_report.html', form=form, legend='Add report', title = "Add report" )
 
 
 
@@ -91,7 +127,7 @@ def login():
         else:
             flash('Please check your username and password', 'danger')
             return redirect(url_for('login'))
-    return render_template('login.html',form=form)
+    return render_template('login.html',form=form, title = "login")
 
 @app.route("/logout")
 def logout():

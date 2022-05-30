@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, EmailField,IntegerField,DateField, RadioField
+from wtforms import StringField, TextAreaField, PasswordField, SubmitField, BooleanField, EmailField,IntegerField,DateField, RadioField, MultipleFileField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
 from emergencydebartment.models import Doctor, Patient
 
@@ -40,10 +40,11 @@ class RegistrationForm(FlaskForm):
     def validate_ssn(self, ssn):
         try:
             x = int(ssn)
+            if not len(ssn) == 14:
+                raise ValidationError('SSN must be a 14 digit number')
         except:
             raise ValidationError('SSN must be a number')
-        if not len(ssn) == 14:
-            raise ValidationError('SSN must be a 14 digit number')
+        
 
 class DoctorRegistrationForm(RegistrationForm):
     salary = IntegerField("Salary",  validators=[DataRequired()])
@@ -56,3 +57,17 @@ class DoctorRegistrationForm(RegistrationForm):
 
 class PatientRegistrationForm(RegistrationForm):
     Condition= StringField('Condition')
+
+class ReportForm(FlaskForm):
+    ssn = StringField('Patient SSN', validators=[DataRequired()])
+    statement = TextAreaField('Statement', validators=[DataRequired()])
+    images = MultipleFileField('upload files')
+    submit = SubmitField('Add report')
+
+    def validate_ssn(self, ssn):
+        try:
+            x = int(ssn)
+            if not len(ssn) == 14:
+                raise ValidationError('SSN must be a 14 digit number')
+        except:
+            raise ValidationError('SSN must be a number')
