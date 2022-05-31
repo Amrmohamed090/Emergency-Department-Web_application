@@ -269,4 +269,11 @@ footer .mn li a{
     margin: auto;
 }
 
+.textwhite{
+    color: white;
+}
+.textgold{
+    color: #f66b0e;
+}
+
 /*Footer ends*/
