@@ -133,3 +133,7 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/patients_table")
+def ptable():
+    return render_template('patients_table.html')
