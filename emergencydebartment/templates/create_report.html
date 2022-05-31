@@ -17,18 +17,42 @@
               </div>
             <div class="form-group textwhite">
                 {{ form.ssn.label(class="form-control-label") }}
-                {{ form.ssn(class="form-control form-control-lg") }}
-                
+                {% if form.ssn.errors %}
+                    {{ form.ssn(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.ssn.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.ssn(class="form-control form-control-lg") }}
+                {% endif %}
             </div>
             <div class="form-group textwhite">
                 {{ form.statement.label(class="form-control-label") }}
-                 {{ form.statement(class="form-control form-control-lg") }}
-
+                {% if form.statement.errors %}
+                    {{ form.statement(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.statement.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.statement(class="form-control form-control-lg") }}
+                {% endif %}
 
 
                 {{ form.images.label(class="form-control-label") }}
-                {{ form.images(class="form-control form-control-lg") }}
-                
+                {% if form.images.errors %}
+                    {{ form.images(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.images.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.images(class="form-control form-control-lg") }}
+                {% endif %}
 
             </div>
         </fieldset>
