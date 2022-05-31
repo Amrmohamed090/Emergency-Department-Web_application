@@ -39,8 +39,8 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('email is taken, please choose another one')
     def validate_ssn(self, ssn):
         try:
-            x = int(ssn)
-            if not len(ssn) == 14:
+            x = int(ssn.data)
+            if not len(ssn.data) == 14:
                 raise ValidationError('SSN must be a 14 digit number')
         except:
             raise ValidationError('SSN must be a number')
@@ -66,8 +66,8 @@ class ReportForm(FlaskForm):
 
     def validate_ssn(self, ssn):
         try:
-            x = int(ssn)
-            if not len(ssn) == 14:
+            x = int(ssn.data)
+            if not (len(ssn.data) == 14):
                 raise ValidationError('SSN must be a 14 digit number')
-        except:
-            raise ValidationError('SSN must be a number')
+        except ValueError:
+            raise ValidationError('SSN must be a 14 digit number')

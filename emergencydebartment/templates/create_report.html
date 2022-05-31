@@ -1,10 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="content-section">
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">{{ legend }}</legend>
+            {% if exist %}
+            <div class="col-md-6 alertclass">
+                
+                <div class="alert alert-success">The report has been added, the patient is not regestered <br>
+                    Do you want to register the patient now?
+                </div>
+                
+
+            {% endif %}
+              </div>
             <div class="form-group">
                 {{ form.ssn.label(class="form-control-label") }}
                 {% if form.ssn.errors %}

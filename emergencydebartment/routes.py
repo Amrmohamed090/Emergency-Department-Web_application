@@ -81,25 +81,42 @@ def registerP():
 def new_report():
     form = ReportForm()
     if form.validate_on_submit():
-        id = Patient.query.filter_by(ssn = form.ssn.data).first().id
         
-        files = request.files.getlist('files[]')
-        file_names = []
-        for file in files:
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file_names.append(filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        
+        files = form.images.data
+        print(files)
+        
+        if files:
+            for file in files:
+                print(file)
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    file.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename))
+                if file and not allowed_file(file.filename):
+                    flash(f'Your file "{file.filename}" is not supported', 'danger')
+                    return redirect(url_for('new_report'))
             
         
         
-        
-        report = Report( patient_id=id, doctor_id=current_user.id,
+        patient = Patient.query.filter_by(ssn = form.ssn.data).first()
+        ssn_exist = 1
+        if not patient:
+            report = Report(doctor_id=current_user.id,
                              statement = form.statement.data)
-        db.session.add(report)
-        db.session.commit()
-        flash('Your post has been created!', 'success')
-        return redirect(url_for('home'))
+            db.session.add(report)
+            db.session.commit()
+            flash('Your Report has been created! ', 'success')
+            return render_template('create_report.html', form=form, legend='Add report', title = "Add report" ,ssn_notexist = 1)
+        else:
+            report = Report(patient_id = patient.id, doctor_id=current_user.id,
+                             statement = form.statement.data)
+            db.session.add(report)
+            db.session.commit()
+            flash('Your Report has been created!', 'success')
+            
+            return render_template('create_report.html', form=form, legend='Add report', title = "Add report" )
+        
     return render_template('create_report.html', form=form, legend='Add report', title = "Add report" )
 
 
@@ -129,11 +146,10 @@ def login():
             return redirect(url_for('login'))
     return render_template('login.html',form=form, title = "login")
 
+
+
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route("/patients_table")
-def ptable():
-    return render_template('patients_table.html')
