@@ -61,10 +61,11 @@ def registerD():
 def registerP():
     form =  PatientRegistrationForm()
     if form.validate_on_submit():
+        print('valid')
         hashed_password = bcrypt.generate_password_hash(form.password).decode('utf-8')
         patient = Patient(Fname=form.Fname.data, Sname=form.Sname.data,Lname=form.Lname.data
                         ,email=form.email.data,ssn = form.ssn.data, password=hashed_password, gender=form.gender.data,
-                         birth_date=form.birth_date.data,
+                         birth_date=form.birth_date.data, phone = form.phone.data,
                         address=form.address.data)
         db.session.add(patient)
         db.session.commit()

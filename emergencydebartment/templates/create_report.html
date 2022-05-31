@@ -17,42 +17,18 @@
               </div>
             <div class="form-group textwhite">
                 {{ form.ssn.label(class="form-control-label") }}
-                {% if form.ssn.errors %}
-                    {{ form.ssn(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.ssn.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.ssn(class="form-control form-control-lg") }}
-                {% endif %}
+                {{ form.ssn(class="form-control form-control-lg") }}
+                
             </div>
             <div class="form-group textwhite">
                 {{ form.statement.label(class="form-control-label") }}
-                {% if form.statement.errors %}
-                    {{ form.statement(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.statement.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.statement(class="form-control form-control-lg") }}
-                {% endif %}
+                 {{ form.statement(class="form-control form-control-lg") }}
+
 
 
                 {{ form.images.label(class="form-control-label") }}
-                {% if form.images.errors %}
-                    {{ form.images(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.images.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.images(class="form-control form-control-lg") }}
-                {% endif %}
+                {{ form.images(class="form-control form-control-lg") }}
+                
 
             </div>
         </fieldset>
