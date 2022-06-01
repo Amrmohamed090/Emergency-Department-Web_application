@@ -52,27 +52,48 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {% for patient in table %}
-                                
                                     <tr>
-                                        <th scope="row"></th>
-                                        <td>{{patient.ssn}}</td>
-                                        <td>{{patient.Fname}}</td>
-                                        <td>{{patient.Lname}}</td>
-                                        <td>{{patient.birth_date}}</td>
-                                        <td>{{patient.gender}}</td>
-                                        <td>{{patient.date}}</td>
-                                        <td>{{patient.adderss}}</td>
-                                        <td>{{patient.phone}}</td>
-                                        <td>{{patient.report.statement}}</td>
+                                        <th scope="row">1</th>
+                                        <td>41</td>
+                                        <td>Abraham</td>
+                                        <td>mohamed</td>
                                         <td>14/08/1974</td>
-                                        <td>{% for id in patient.report.doctor_id %}
-                                            {{id.speciallity}}
-                                            {% endfor %}
-                                        </td>
+                                        <td>male</td>
+                                        <td>15/06/2022</td>
+                                        <td>23 Abdel Salam Arif St., BAB EL LOUK</td>
+                                        <td>01155787168</td>
+                                        <td>awdasfasfasf</td>
+                                        <td>14/08/1974</td>
+                                        <td>hemotolagy</td>
                                     </tr>
-                                    
-                                    {% endfor %}
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>Doe</td>
+                                        <td>jhon@email.com</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
