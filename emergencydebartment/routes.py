@@ -159,4 +159,7 @@ def logout():
 def ptable():
     table = Patient.query.all()
     return render_template('patients_table.html', table = table)
-
+    
+@app.route("/report")
+def preport():
+    return render_template('patient_report.html')
