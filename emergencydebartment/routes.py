@@ -156,3 +156,7 @@ def logout():
 @app.route("/patients_table")
 def ptable():
     return render_template('patients_table.html')
+
+@app.route("/report")
+def preport():
+    return render_template('patient_report.html')
