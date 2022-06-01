@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method="post">
+<div class="input-group">
+    {{ form.ssn(class="form-control rounded" ,placeholder="SSN") }}
+</div>
+<div class="input-group">
+    {{ form.Fname(class="form-control rounded" ,placeholder="First Name") }}>
+    {{ form.Sname(class="form-control rounded" ,placeholder="Second Name") }}
+    {{ form.Lname(class="form-control rounded" ,placeholder="Last Name") }}
+</div>
+    
+    {{ form.submit(class="sin btn btn-primary mt-4" ,style="width: 100px;") }}
+
+  
+</form>
+{% endblock %}

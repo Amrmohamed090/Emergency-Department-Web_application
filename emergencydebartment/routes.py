@@ -2,7 +2,7 @@
 from turtle import title
 from flask import  render_template, request, url_for ,flash, redirect, session
 from emergencydebartment import app, db, bcrypt, login_manager
-from emergencydebartment.form import LoginForm , DoctorRegistrationForm, PatientRegistrationForm, ReportForm
+from emergencydebartment.form import LoginForm , DoctorRegistrationForm, PatientRegistrationForm, ReportForm, SearchPatientForm
 from emergencydebartment.models import Doctor, Patient, Report, Images
 from flask_login import login_user, current_user , logout_user, login_required
 from functools import wraps
@@ -50,10 +50,6 @@ def registerD():
         db.session.commit()
         flash('a doctor has been registered', 'successus')
         return redirect(url_for('home'))
-    
-    if form.errors:
-        flash('please inter valid fields', 'danger')
-        return redirect(url_for('registerD'))
     return render_template('signup-doctor.html', form=form , title = "Register a Doctor")
 
 @app.route("/register-P", methods=['GET', 'POST'])
@@ -61,16 +57,17 @@ def registerD():
 def registerP():
     form =  PatientRegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         patient = Patient(Fname=form.Fname.data, Sname=form.Sname.data,Lname=form.Lname.data
                         ,email=form.email.data,ssn = form.ssn.data, password=hashed_password, gender=form.gender.data,
-                         birth_date=form.birth_date.data,
+                         birth_date=form.birth_date.data,phone = form.phone.data,
                         address=form.address.data)
         db.session.add(patient)
         db.session.commit()
     
         flash('a Patient has been registered', 'successus')
         return redirect(url_for('home'))
+    
         
         
     return render_template('signup-patient.html', form=form, title = "Register a Patient")
@@ -120,7 +117,12 @@ def new_report():
     return render_template('create_report.html', form=form, legend='Add report', title = "Add report" )
 
 
-
+@app.route("/search",methods=['GET','POST'])
+def search_patient():
+    form = SearchPatientForm()
+    if form.validate_on_submit():
+        pass
+    return render_template('search_patient.html',form=form, title = "search")
 
 @app.route("/login",methods=['GET','POST'])
 def login():
@@ -155,4 +157,5 @@ def logout():
 
 @app.route("/patients_table")
 def ptable():
-    return render_template('patients_table.html')
+    table = Patient.query.all()
+    return render_template('patients_table.html', table = table)

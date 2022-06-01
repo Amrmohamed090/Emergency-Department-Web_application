@@ -25,7 +25,12 @@ body{
     color: var(--orange-color);
 }
 
-
+.textwhite{
+    color: white;
+}
+.textgold{
+    color: #f66b0e;
+}
 
 .navbar .team{
     font-size: 20px;
