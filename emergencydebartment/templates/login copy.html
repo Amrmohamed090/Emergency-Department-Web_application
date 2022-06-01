@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible"content="IE=edge"/>
+    <meta name="viewport"content="width-device-width,initial-scale=1.0"/>
+    <!--    import google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300;1,400;1,500;1,900&display=swap" rel="stylesheet">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/all.min.css">
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/login.css">
+    <title>Login Page</title>
+</head>
+    <body>
+
+        <!--   navbar starts     -->
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
+                </a>
+                    <a href="{{ url_for('home') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
+                </div>
+            </div>
+        </nav>
+        <!--   navbar end     -->
+
+        <div class="col-md-6 alertclass">
+            {% with messages = get_flashed_messages(with_categories = true) %} {% if
+            messages %} {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %} {% endif%} {% endwith %}
+          </div>
+
+
+     <!--start section -->  
+        <section class="login-box text-center">
+            <img src="../static/images/E.svg.png" class="logo" style="width: 75px;">
+            <h1 class="text-uppercase pb-2" style="color: #ed1c24; font-weight: bolder;">Login</h1>
+            <form action="" method="POST">
+
+
+                {{ form.hidden_tag() }}
+                {{ form.email.label(class="float-start" ,style="color: var(--gray-color)" ) }}
+                {{ form.email(class="uid mb-3" , style="width: 260px") }}
+
+
+                {{ form.password.label(class="float-start" ,style="color: var(--gray-color)") }}
+                {{ form.password(type="password", id="password"  ,class="psw " ,style="width: 260px") }}
+
+
+
+                {{ form.submit(class="sin btn btn-primary mt-4" ,style="width: 100px;") }}
+
+
+
+
+
+
+
+
+            </form>
+        </section>
+
+
+        <section class="foot">
+            <footer>
+                <ul class="social_icon">
+                    <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+                </ul>
+                <p style="font-size: 15px; color: var(--gray-color)">&copy; Database course Team 19</p>
+            </footer>
+        </section>
+
+        <script src="../static/script/bootstrap.bundle.min.js"></script>
+        <script src="../static/script/all.min.js"></script>
+    </body>
+</html>

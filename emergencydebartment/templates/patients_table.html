@@ -30,52 +30,64 @@
         </nav>
         <!--   navbar end     -->
         
-<div class="content-table ">
-                        <div class="scrollme">
-                           
-                            <table class="table table-bordered table-responsive">
-                                <thead>
-                                    <tr >
-                                        <th scope="col" >#</th>
-                                        <th scope="col">SSN</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col" >Last Name</th>
-                                        <th scope="col" >Data of birth</th>
-                                        <th scope="col" >Gender</th>
-                                        <th scope="col" >Enter data</th>
-                                        <th scope="col" >Adderss</th>
-                                        <th scope="col" >phone</th>
-                                        <th scope="col" >Medical History</th>
-                                        <th scope="col" >Date of discharge</th>
-                                        <th scope="col" >Refer departemnt</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {% for patient in table %}
-                                
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td>{{patient.ssn}}</td>
-                                        <td>{{patient.Fname}}</td>
-                                        <td>{{patient.Lname}}</td>
-                                        <td>{{patient.birth_date}}</td>
-                                        <td>{{patient.gender}}</td>
-                                        <td>{{patient.date}}</td>
-                                        <td>{{patient.adderss}}</td>
-                                        <td>{{patient.phone}}</td>
-                                        <td>{{patient.report.statement}}</td>
-                                        <td>14/08/1974</td>
-                                        <td>{% for id in patient.report.doctor_id %}
-                                            {{id.speciallity}}
-                                            {% endfor %}
-                                        </td>
-                                    </tr>
+        <div >
+            <form method="POST" class="container search-field">
+                <div class="input-group">
+                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <button type="button" class="btn btn-outline-primary">search</button>
+                  </div>
+            </form>
+        </div>
+        <div class="content">
+                <div class="content-table ">
+
+
+                    <div class="scrollme">
+                       
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                                <tr >
+                                    <th scope="col" >#</th>
+                                    <th scope="col">SSN</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col" >Last Name</th>
+                                    <th scope="col" >Data of birth</th>
+                                    <th scope="col" >Gender</th>
+                                    <th scope="col" >Enter data</th>
+                                    <th scope="col" >Adderss</th>
+                                    <th scope="col" >phone</th>
+                                    <th scope="col" >Medical History</th>
+                                    <th scope="col" >Date of discharge</th>
+                                    <th scope="col" >Refer departemnt</th>
                                     
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for patient in table %}
+                            
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>{{patient.ssn}}</td>
+                                    <td>{{patient.Fname}}</td>
+                                    <td>{{patient.Lname}}</td>
+                                    <td>{{patient.birth_date}}</td>
+                                    <td>{{patient.gender}}</td>
+                                    <td>{{patient.date}}</td>
+                                    <td>{{patient.adderss}}</td>
+                                    <td>{{patient.phone}}</td>
+                                    <td>{{patient.report.statement}}</td>
+                                    <td>{{patient.report.date}}</td>
+                                    <td>{% for id in patient.report.doctor_id %}
+                                        {{id.speciallity}}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                     </div>
 
 

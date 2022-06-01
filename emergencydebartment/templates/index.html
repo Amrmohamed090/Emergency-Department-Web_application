@@ -1,43 +1,19 @@
-{% extends "layout.html" %}
-{% block content %}
-    <!--   Landing Section starts     -->
-    <section
-      id="landing"
-      class="landing d-flex justify-content-center align-items-center"
+{% extends "layout.html" %} {% block content %}
+<!--   Landing Section starts     -->
+<section
+  id="landing"
+  class="landing d-flex justify-content-center align-items-center"
+>
+  {% if current_user.is_anonymous or current_user.user_role == 'Patient' %}
+  <div class="text-center">
+    <img class="E-logo mb-2" src="../static/images/E.svg.png" width="100px" />
+    <h1><i>Clinical Emergency services</i></h1>
+    <p class="mb-2"><i>For Emergency Conditions</i></p>
+    <a class="calling_btn btn rounded-pill main-btn" href="tel:+201015134314"
+      ><i class="fa-solid fa-phone"></i> Call</a
     >
-    {% if current_user.is_anonymous or current_user.user_role == 'Patient' %}
-      <div class="text-center">
-        <img
-          class="E-logo mb-2"
-          src="../static/images/E.svg.png"
-          width="100px"
-        />
-        <h1><i>Clinical Emergency services</i></h1>
-        <p class="mb-2"><i>For Emergency Conditions</i></p>
-        <a
-          class="calling_btn btn rounded-pill main-btn"
-          href="tel:+201015134314"
-          ><i class="fa-solid fa-phone"></i> Call</a
-        >
-      </div>
-      {% elif current_user.user_role == 'Doctor'%}
-      
-      
-      <div class="text-center">
-        <img
-          class="E-logo mb-2"
-          src="../static/images/add2.png"
-          width="100px"
-        />
-        <h1><i>Add report</i></h1>
-        <p class="mb-2"><i>Create a new Emengency report</i></p>
-        <a
-          class="calling_btn btn rounded-pill main-btn"
-          href="{{ url_for('new_report') }}"
-          ><i class="fa-solid fa-plus"></i> Add</a
-        >
-      </div>
-
+  </div>
+  {% elif current_user.user_role == 'Doctor'%}
 
       <div class="text-center">
         <img
@@ -65,301 +41,396 @@
         <a
           class="calling_btn btn rounded-pill main-btn"
 
-          href="{{ url_for('preport') }}"
+          href="{{ url_for('new_report') }}"
 
           ><i class="fa-solid fa-search"></i> search</a
         >
       </div>
 
-      <div class="text-center">
-        <img
-          class="E-logo mb-2"
-          src="../static/images/patients2.png"
-          width="100px"
-        />
-        <h1><i>Patients Table</i></h1>
-        <p class="mb-2"><i>Patients Table</i></p>
-        <a
-          class="calling_btn btn rounded-pill main-btn"
-          href="{{ url_for('ptable') }}"
-          ><i class="fa-solid fa-user"></i> patients</a
+  <div class="text-center">
+    <img class="E-logo mb-2" src="../static/images/addac2.png" width="100px" />
+    <h1><i>Add Patient</i></h1>
+    <p class="mb-2"><i>Register a new patient</i></p>
+    <a
+      class="calling_btn btn rounded-pill main-btn"
+      href="{{ url_for('registerP') }}"
+      ><i class="fa-solid fa-user"></i> Register</a
+    >
+  </div>
+
+  <div class="text-center">
+    <img class="E-logo mb-2" src="../static/images/search2.png" width="100px" />
+    <h1><i>Search</i></h1>
+    <p class="mb-2"><i>Search for patient or report</i></p>
+    <a
+      class="calling_btn btn rounded-pill main-btn"
+      href="{{ url_for('search_patient') }}"
+      ><i class="fa-solid fa-search"></i> search</a
+    >
+  </div>
+
+  <div class="text-center">
+    <img
+      class="E-logo mb-2"
+      src="../static/images/patients2.png"
+      width="100px"
+    />
+    <h1><i>Patients Table</i></h1>
+    <p class="mb-2"><i>Patients Table</i></p>
+    <a
+      class="calling_btn btn rounded-pill main-btn"
+      href="{{ url_for('ptable') }}"
+      ><i class="fa-solid fa-user"></i> patients</a
+    >
+  </div>
+
+  {% endif %}
+</section>
+<!--   Landing Section ends     -->
+<!--  services section starts      -->
+<section
+  id="services"
+  class="services d-flex justify-content-center align-items-center"
+>
+  <div class="srv card">
+    <div class="card-body">
+      <div class="main-title text-center mt-5 mb-5 position-relative">
+        <h1 class="serv-icon mb-0" style="color: var(--blue-color)">
+          <i class="fa-solid fa-hand-holding-hand"></i>
+        </h1>
+        <p class="title">Services</p>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4" style="margin-bottom: 15px">
+            <div class="card w-auto">
+              <div class="card-body text-center">
+                <i
+                  class="fa-solid fa-clock bottom-0 icon"
+                  style="color: var(--orange-color); font-size: 100px"
+                ></i>
+                <h4
+                  class="mb-3 mt-3 text-uppercase"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 20px;
+                    text-shadow: rgba(0, 0, 0, 0.3) 10px 10px 5px;
+                    font-weight: bolder;
+                  "
+                >
+                  <i
+                    >Working
+                    <span
+                      style="
+                        font-weight: bolder;
+                        font-size: 30px;
+                        text-shadow: var(--orange-color) 10px 10px 5px;
+                      "
+                      >24</span
+                    >
+                    Hours</i
+                  >
+                </h4>
+                <p
+                  class="p-2 p-sm-1"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 13px;
+                    font-weight: bolder;
+                  "
+                >
+                  <i
+                    >Emergency Rooms are staffed 24 hours a day,seven days a
+                    week by highly qualified, board-certified emergency medicine
+                    physicians</i
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom: 15px">
+            <div class="card w-auto">
+              <div class="card-body text-center">
+                <i
+                  class="fa-solid fa-truck-medical bottom-0 icon"
+                  style="color: var(--orange-color); font-size: 100px"
+                ></i>
+                <h4
+                  class="mb-3 mt-3 text-uppercase"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 20px;
+                    text-shadow: rgba(0, 0, 0, 0.3) 10px 10px 5px;
+                    font-weight: bolder;
+                  "
+                >
+                  <i>Highly Equipped Ambulances</i>
+                </h4>
+                <p
+                  class="p-2 p-sm-1"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 13px;
+                    font-weight: bolder;
+                  "
+                >
+                  <i
+                    >Ambulances are highly equipped to handle a range of
+                    emergency illnesses and injuries for both adults and
+                    children.</i
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom: 15px">
+            <div class="card w-auto">
+              <div class="card-body text-center">
+                <i
+                  class="fa-solid fa-user-doctor bottom-0 icon"
+                  style="color: var(--orange-color); font-size: 100px"
+                ></i>
+                <h4
+                  class="mb-3 mt-3 text-uppercase"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 20px;
+                    text-shadow: rgba(0, 0, 0, 0.3) 10px 10px 5px;
+                    font-weight: bolder;
+                  "
+                >
+                  <i>Highly Qualified Medical Staff</i>
+                </h4>
+                <p
+                  class="p-2 p-sm-1"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 13px;
+                    font-weight: bolder;
+                  "
+                >
+                  <i
+                    >Medical Staff doctors, nurses and paramedics are highly
+                    qualified to handle all emergency condition either for
+                    children or adults</i
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--  services section ends      -->
+<!--  about section starts      -->
+<section
+  id="about"
+  class="about d-flex justify-content-center align-items-center"
+>
+  <div class="Ab card text-center">
+    <div class="card-body">
+      <div class="main-title mt-5 mb-5 position-relative">
+        <h1 class="abt-icon mb-0" style="color: var(--blue-color)">
+          <i class="fa-solid fa-circle-question"></i>
+        </h1>
+        <p class="title">About</p>
+      </div>
+      <div class="abt">
+        <h1
+          style="color: var(--blue-color); font-size: 40px; font-weight: bolder"
         >
+          Database Final Project
+        </h1>
+        <p
+          class="ms-0 me-0"
+          style="padding: 0 40px; color: var(--blue-color); font-weight: bolder"
+        >
+          <i
+            >This website is an application on the principles of database course
+            developed by team 19, 2<sup>nd</sup> stage of Systems and Biomedical
+            Engineering Department, Faculty of Engineering Cairo University</i
+          >
+        </p>
       </div>
-
-
-      {% endif %}
-
-    </section>
-    <!--   Landing Section ends     -->
-    <!--  services section starts      -->
-    <section id="services" class="services text-center pt-5 pb-5">
-      <div class="container">
-        <div class="main-title mt-5 mb-5 position-relative">
-          <h1 class="serv-icon mb-0">
-            <i class="fa-solid fa-hand-holding-hand"></i>
-          </h1>
-          <p class="title">Services</p>
-        </div>
-        <div class="row justify-content-center">
-          <div class="content col-lg-4 col-md-6">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i
-                  class="fa-solid fa-clock position-absolute bottom-0 icon"
-                ></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase">
-                <i>Working <span>24</span> Hours</i>
-              </h4>
-              <p class="p-2 p-sm-1">
-                <i
-                  >Emergency Rooms are staffed 24 hours a day,seven days a week
-                  by highly qualified, board-certified emergency medicine
-                  physicians</i
-                >
-              </p>
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="content col-lg-4 col-md-6">
+          <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
+            <div class="icon-holder position-relative mt-2">
+              <img
+                src="../static/images/Cairo_University_Crest.png"
+                width="60px"
+              />
+              <img
+                src="../static/images/v1-removebg-preview.png"
+                width="80px"
+              />
             </div>
-          </div>
-          <div class="content col-lg-4 col-md-6">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i
-                  class="fa-solid fa-truck-medical position-absolute bottom-0 icon"
-                ></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase">
-                <i>Highly Equipped Ambulances</i>
-              </h4>
-              <p class="p-2 p-sm-1">
-                <i
-                  >Ambulances are highly equipped to handle a range of emergency
-                  illnesses and injuries for both adults and children.</i
-                >
-              </p>
-            </div>
-          </div>
-          <div class="content col-lg-4 col-md-6">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i
-                  class="fa-solid fa-user-doctor position-absolute bottom-0 icon"
-                ></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase">
-                <i>Highly Qualified Medical Staff</i>
-              </h4>
-              <p class="p-2 p-sm-1">
-                <i
-                  >Medical Staff doctors, nurses and paramedics are highly
-                  qualified to handle all emergency condition either for
-                  children or adults</i
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--  services section ends      -->
-    <!--  about section starts      -->
-    <section id="about" class="about text-center pt-5 pb-5">
-      <div class="container">
-        <div class="main-title mt-5 mb-5 position-relative">
-          <h1 class="abt-icon mb-0">
-            <i class="fa-solid fa-circle-question"></i>
-          </h1>
-          <p class="title">About</p>
-        </div>
-        <div class="abt">
-          <h1><i class="fa-solid fa-database"></i> Database Final Project</h1>
-          <p class="ms-2 me-2" style="padding: 0 40px">
-            <i
-              >This website is an application on the principles of database
-              course developed by team 19, 2<sup>nd</sup> stage of Systems and
-              Biomedical Engineering Department, Faculty of Engineering Cairo
-              University</i
+            <p
+              class="mb-0"
+              style="
+                color: var(--blue-off-color);
+                font-weight: bolder;
+                font-size: 13px;
+              "
             >
-          </p>
-        </div>
-        <div class="row d-flex justify-content-center align-items-center">
-          <div class="content col-lg-4 col-md-6">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <img
-                  src="../static/images/Cairo_University_Crest.png"
-                  width="75px"
-                />
-                <img
-                  src="../static/images/v1-removebg-preview.png"
-                  width="100px"
-                />
-              </div>
-              <p
-                class="mb-0"
-                style="color: var(--white-off-color); font-weight: bolder"
-              >
-                <i>Cairo University Faculty of Engineering</i>
-              </p>
-              <p style="color: var(--white-off-color); font-weight: bolder">
-                <i>Systems and Biomedical Engineering Department</i>
-              </p>
-            </div>
+              <i>Cairo University Faculty of Engineering</i>
+            </p>
+            <p
+              style="
+                color: var(--blue-off-color);
+                font-weight: bolder;
+                font-size: 13px;
+              "
+            >
+              <i>Systems and Biomedical Engineering Department</i>
+            </p>
           </div>
         </div>
       </div>
-    </section>
-    <!--  about section ends      -->
+    </div>
+  </div>
+</section>
 
-    <section id="team" class="services text-center pt-5 pb-5">
-      <div class="container">
-        <div class="main-title mt-5 mb-5 position-relative">
-          <h1 class="serv-icon mb-0">
-            <i class="fa-solid fa-people-group"></i>
-          </h1>
-          <p class="title">Team 19</p>
-        </div>
-        <div class="row d-flex justify-content-center">
-          <div class="content col-lg-3 col-md-3">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i class="fa-solid fa-user position-absolute bottom-0 icon"></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase"><i>amr mohamed</i></h4>
-              <p class="">
-                <i
-                  >Section:
-                  <span style="font-weight: bolder; font-size: 16px">2</span>
-                  <br />Bench Number:
-                  <span style="font-weight: bolder; font-size: 16px">7</span></i
-                >
-              </p>
-            </div>
+<!--  about section ends      -->
+
+<section id="team" class="team d-flex justify-content-center align-items-center">
+  <div class="tm card">
+      <div class="card-body">
+          <div class="main-title text-center mt-5 mb-5 position-relative">
+              <h1 class="serv-icon mb-0" style="color: var(--gray-color); font-size: 100px"><i class="fa-solid fa-people-group"></i></h1>
+              <p class="title">Team 19</p>
           </div>
-          <div class="content col-lg-3 col-md-3">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i class="fa-solid fa-user position-absolute bottom-0 icon"></i>
+          <div class="container ">
+              <div class="row d-flex justify-content-center align-items-center">
+
+                  <div class="col-md-4 col-lg-3" style="margin-bottom: 15px;">
+                      <div class="card w-auto">
+                          <div class="card-body text-center">
+                              <i class="fa-solid fa-circle-user bottom-0 icon" style="color: var(--orange-color);font-size: 100px"></i>
+                              <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">Amr Mohammed</h4>
+                              <p style="color: var(--blue-color); font-size: 18px; font-weight: bolder;"><i><span style="font-size: 13px;">Section:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  2</span><br>
+                                  <span style="font-size: 13px;">Bench Number:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  7</span><br></i></p>
+                          </div>
+                          <div class="card-footer text-muted">
+                              <a href="#" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-linkedin"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-github"></i></a>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-3" style="margin-bottom: 15px;">
+                      <div class="card w-auto">
+                          <div class="card-body text-center">
+                              <i class="fa-solid fa-circle-user bottom-0 icon" style="color: var(--orange-color);font-size: 100px"></i>
+                              <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">Mahmoud Sayed</h4>
+                              <p style="color: var(--blue-color); font-size: 18px; font-weight: bolder;"><i><span style="font-size: 13px;">Section:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  2</span><br>
+                                  <span style="font-size: 13px;">Bench Number:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  18</span><br></i></p>
+                          </div>
+                          <div class="card-footer text-muted">
+                              <a href="#" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-linkedin"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-github"></i></a>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-3" style="margin-bottom: 15px;">
+                      <div class="card w-auto">
+                          <div class="card-body text-center">
+                              <i class="fa-solid fa-circle-user bottom-0 icon" style="color: var(--orange-color);font-size: 100px"></i>
+                              <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">adham mohamed</h4>
+                              <p style="color: var(--blue-color); font-size: 18px; font-weight: bolder;"><i><span style="font-size: 13px;">Section:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  1</span><br>
+                                  <span style="font-size: 13px;">Bench Number:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  9</span><br></i></p>
+                          </div>
+                          <div class="card-footer text-muted">
+                              <a href="#" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-linkedin"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-github"></i></a>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-3" style="margin-bottom: 15px;">
+                      <div class="card w-auto">
+                          <div class="card-body text-center">
+                              <i class="fa-solid fa-circle-user bottom-0 icon" style="color: var(--orange-color);font-size: 100px"></i>
+                              <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">amr kamal</h4>
+                              <p style="color: var(--blue-color); font-size: 18px; font-weight: bolder;"><i><span style="font-size: 13px;">Section:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  2</span><br>
+                                  <span style="font-size: 13px;">Bench Number:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  6</span><br></i></p>
+                          </div>
+                          <div class="card-footer text-muted">
+                              <a href="#" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-linkedin"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-github"></i></a>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-3" style="margin-bottom: 15px;">
+                      <div class="card w-auto">
+                          <div class="card-body text-center">
+                              <i class="fa-solid fa-circle-user bottom-0 icon" style="color: var(--orange-color);font-size: 100px"></i>
+                              <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">Mahmoud Zakaria</h4>
+                              <p style="color: var(--blue-color); font-size: 18px; font-weight: bolder;"><i><span style="font-size: 13px;">Section:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  2</span><br>
+                                  <span style="font-size: 13px;">Bench Number:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  25</span><br></i></p>
+                          </div>
+                          <div class="card-footer text-muted">
+                              <a href="#" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-linkedin"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-github"></i></a>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-3" style="margin-bottom: 15px;">
+                      <div class="card w-auto">
+                          <div class="card-body text-center">
+                              <i class="fa-solid fa-circle-user bottom-0 icon" style="color: var(--orange-color);font-size: 100px"></i>
+                              <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">Mahmoud Emad</h4>
+                              <p style="color: var(--blue-color); font-size: 18px; font-weight: bolder;"><i><span style="font-size: 13px;">Section:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  2</span><br>
+                                  <span style="font-size: 13px;">Bench Number:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  27</span><br></i></p>
+                          </div>
+                          <div class="card-footer text-muted">
+                              <a href="#" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-linkedin"></i></a>
+                              <a href="#" class="btn btn-primary"><i class="fa-brands fa-github"></i></a>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <h4 class="mb-3 mt-3 text-uppercase"><i>Mohamed sayed</i></h4>
-              <p class="">
-                <i
-                  >Section:
-                  <span style="font-weight: bolder; font-size: 16px">2</span>
-                  <br />Bench Number:
-                  <span style="font-weight: bolder; font-size: 16px">18</span></i
-                >
-              </p>
-            </div>
           </div>
-          <div class="content col-lg-3 col-md-3">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i class="fa-solid fa-user position-absolute bottom-0 icon"></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase"><i>ِadham mohammed</i></h4>
-              <p class="">
-                <i
-                  >Section:
-                  <span style="font-weight: bolder; font-size: 16px">1</span>
-                  <br />Bench Number:
-                  <span style="font-weight: bolder; font-size: 16px">9</span></i
-                >
-              </p>
-            </div>
-          </div>
-          <div class="content col-lg-3 col-md-3">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i class="fa-solid fa-user position-absolute bottom-0 icon"></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase"><i>Amr kamal</i></h4>
-              <p class="">
-                <i
-                  >Section:
-                  <span style="font-weight: bolder; font-size: 16px">2</span>
-                  <br />Bench Number:
-                  <span style="font-weight: bolder; font-size: 16px">6</span></i
-                >
-              </p>
-            </div>
-          </div>
-          <div class="content col-lg-3 col-md-3">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i class="fa-solid fa-user position-absolute bottom-0 icon"></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase"><i>Mahmoud zakaria</i></h4>
-              <p class="">
-                <i
-                  >Section:
-                  <span style="font-weight: bolder; font-size: 16px">2</span>
-                  <br />Bench Number:
-                  <span style="font-weight: bolder; font-size: 16px">25</span></i
-                >
-              </p>
-            </div>
-          </div>
-          <div class="content col-lg-3 col-md-3">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i class="fa-solid fa-user position-absolute bottom-0 icon"></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase"><i>youssef ahmed</i></h4>
-              <p class="">
-                <i
-                  >Section:
-                  <span style="font-weight: bolder; font-size: 16px">3</span>
-                  <br />Bench Number:
-                  <span style="font-weight: bolder; font-size: 16px">1</span></i
-                >
-              </p>
-            </div>
-          </div>
-          <div class="content col-lg-3 col-md-3">
-            <div class="cnt mt-3 mb-3 mb-sm-2 mt-sm-2">
-              <div class="icon-holder position-relative mt-2">
-                <i class="fa-solid fa-user position-absolute bottom-0 icon"></i>
-              </div>
-              <h4 class="mb-3 mt-3 text-uppercase"><i>Mahmoud emad</i></h4>
-              <p class="">
-                <i
-                  >Section:
-                  <span style="font-weight: bolder; font-size: 16px">2</span>
-                  <br />Bench Number:
-                  <span style="font-weight: bolder; font-size: 16px">27</span></i
-                >
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
+  </div>
+</section>
 
-    <!--    footer starts    -->
 
-    <footer>
-      <ul class="social_icon">
-        <li>
-          <a
-            href="https://github.com/Amrmohamed090/Emergency-Department-Team19/tree/main/emergencydebartment"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-        </li>
-      </ul>
-      <ul class="mn">
-        <li><a href="#landing">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#">Team</a></li>
-      </ul>
-      <p style="font-size: 15px; color: var(--gray-color)">
-        &copy; Database course Team 19
-      </p>
-    </footer>
-    <!--    footer ends    -->
+<!--    footer starts    -->
 
-    <script src="../static/script/bootstrap.bundle.min.js"></script>
-    <script src="../static/script/all.min.js"></script>
+<footer>
+  <ul class="social_icon">
+    <li>
+      <a
+        href="https://github.com/Amrmohamed090/Emergency-Department-Team19/tree/main/emergencydebartment"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+    </li>
+  </ul>
+  <ul class="mn">
+    <li><a href="#landing">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#">Team</a></li>
+  </ul>
+  <p style="font-size: 15px; color: var(--gray-color)">
+    &copy; Database course Team 19
+  </p>
+</footer>
+<!--    footer ends    -->
+
+<script src="../static/script/bootstrap.bundle.min.js"></script>
+<script src="../static/script/all.min.js"></script>
 
 {% endblock %}
-

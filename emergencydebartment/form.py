@@ -44,14 +44,11 @@ class RegistrationForm(FlaskForm):
             try:
                 x = int(phone.data)
                 if not len(phone.data) == 11 :
-                    print('1111111111111111111111111111111')
                     raise ValidationError('phone number is invalid')
                     
                 if phone.data[0] != '0' or phone.data[1] != '1':
-                    print('2221111111111111111111111111111222')
                     raise ValidationError('phone number is invalid')
             except:
-                print('3333111111111111111111111133')
                 raise ValidationError('phone number is invalid')
         
     def validate_ssn(self, ssn):
@@ -68,7 +65,7 @@ class RegistrationForm(FlaskForm):
 class DoctorRegistrationForm(RegistrationForm):
     salary = IntegerField("Salary",  validators=[DataRequired()])
     speciality = StringField('Speciality', validators=[DataRequired(), Length(min=1, max=30)])
-    hiring_date = DateField('Hiring date')
+   
 
 
 

@@ -38,33 +38,49 @@
 
 
      <!--start section -->  
-        <section class="login-box text-center">
-            <img src="../static/images/E.svg.png" class="logo" style="width: 75px;">
-            <h1 class="text-uppercase pb-2" style="color: #ed1c24; font-weight: bolder;">Login</h1>
-            <form action="" method="POST">
-
-
-                {{ form.hidden_tag() }}
-                {{ form.email.label(class="float-start" ,style="color: var(--gray-color)" ) }}
-                {{ form.email(class="uid mb-3" , style="width: 260px") }}
-
-
-                {{ form.password.label(class="float-start" ,style="color: var(--gray-color)") }}
-                {{ form.password(type="password", id="password"  ,class="psw " ,style="width: 260px") }}
 
 
 
-                {{ form.submit(class="sin btn btn-primary mt-4" ,style="width: 100px;") }}
+     <section id="login" class="login">
+        <div class="card text-center">
+            <div class="card-header" style="border: none;">
+                <img src="../static/images/E.svg.png">
+                <h4 class="text-uppercase">Login</h4>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form method='POST'>
+                            {{ form.hidden_tag() }}
+                            <div class="mb-3">
+                                {{ form.email.label(class="form-label float-start" ,style="font-weight: bolder;color: var(--blue-color)" ) }}
+                                {{ form.email(class="form-control") }}
+                            </div>
+                            <div class="mb-3">
+
+                                {{ form.password.label(class="form-label float-start" ,style="font-weight: bolder;color: var(--blue-color)" ) }}
+                                {{ form.password(class="form-control") }}
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1" style=" height: 15px">
+                                <label class="form-check-label float-start" for="exampleCheck1" style="text-decoration: none; font-size: 16px; font-weight: bolder; color: var(--blue-color);">Remember me</label>
+                            </div>
+                            
+                            {{ form.submit(class="btn btn-primary text-uppercase butto") }}
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted" style="border: none;">
+                <img src="../static/images/Cairo_University_Crest.png" style="width: 20px;">
+                <img src="../static/images/v1-removebg-preview.png" style="width: 27px;">
+            </div>
+        </div>
+    </section>
 
 
 
-
-
-
-
-
-            </form>
-        </section>
 
 
         <section class="foot">

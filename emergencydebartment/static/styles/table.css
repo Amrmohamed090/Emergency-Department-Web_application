@@ -1,4 +1,9 @@
-
+.content {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .content-table{
     border-collapse: collapse;
     margin: 25px 0;
@@ -6,10 +11,10 @@
     max-width: 1400px;
     min-height: 200px;
     box-shadow: 0 0 20px rgb(0, 0, 0.15);
-    position: relative;
+    /* position: relative;
     left: 50%;
     top: 30%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%); */
     overflow-x: auto;
 
 }

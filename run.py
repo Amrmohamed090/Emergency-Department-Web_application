@@ -1,4 +1,4 @@
-from emergencydebartment import app;
+from emergencydebartment import app
 
 
 

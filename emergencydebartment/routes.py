@@ -131,6 +131,7 @@ def login():
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
+        print('login')
         user = Doctor.query.filter_by(email=form.email.data).first()
         print (user)
         if not user:
@@ -158,6 +159,8 @@ def logout():
 @app.route("/patients_table")
 def ptable():
     table = Patient.query.all()
+    if request.method == 'POST':
+        print('pri')
     return render_template('patients_table.html', table = table)
     
 @app.route("/report")

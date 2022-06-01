@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
     <!--    -->
     <link rel="stylesheet" href="../static/styles/login.css">
-    <title>Signup a Doctor</title>
+    <title>Signup a patient</title>
 </head>
     <body>
 
@@ -31,62 +31,128 @@
 
 
      <!--start section -->  
-        <section class="login-box text-center" style="height:auto;margin-top:41px;">
-            <img src="../static/images/E.svg.png" class="logo" style="width: 75px;">
-            <h1 class="text-uppercase pb-2" style="color: #ed1c24; font-weight: bolder;">Sign Up a new patient</h1>
-            <form action="" method="POST">
-                {{ form.hidden_tag() }}
-
-                {{ form.Fname.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.Fname(class="uid mb-3" , style="width: 260px") }}
-
-                {{ form.Sname.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.Sname(class="uid mb-3" , style="width: 260px") }}
-
-                {{ form.Lname.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.Lname(class="uid mb-3" , style="width: 260px") }}
-
-                {{ form.ssn.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.ssn(class="uid mb-3" , style="width: 260px") }}
-
-                {{ form.email.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.email(class="uid mb-3" , style="width: 260px") }}
-
-                {{ form.birth_date.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.birth_date(class="uid mb-3" , style="width: 260px") }}
-
-                {{ form.gender.label(style="color: var(--gray-color)") }}
-
-                {{ form.gender(class="uid mb-3" , style="width: 260px") }}
-
-                {{ form.address.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.address(class="uid mb-3" , style="width: 260px") }}
-
-                {{ form.phone.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.phone(class="uid mb-3" , style="width: 260px") }}
-                
-                {{ form.password.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.password(class="uid mb-3" , style="width: 260px") }}
-                
-                {{ form.confirm_password.label(class="float-start" ,style="color: var(--gray-color)") }}
-
-                {{ form.confirm_password(class="uid mb-3" , style="width: 260px") }}
 
 
-                {{ form.submit(class="sin btn btn-primary mt-4" ,style="width: 100px;") }}
+
+     <section id="login" class="login">
+        <div class="card text-center">
+            <div class="card-header" style="border: none;">
+                <img src="../static/images/E.svg.png">
+                <h4 class="text-uppercase">New Patient</h4>
+                <p style="color: white; font-size: 13px;">Please complete this form</p>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            {{ form.hidden_tag() }}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-6">
+                                        <div class="mb-3">
+
+                                            {{ form.Fname.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.Fname(class="form-control") }}
 
 
-            </form>
-        </section>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.Sname.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.Sname(class="form-control") }}
+
+
+
+
+                                            
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.Lname.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.Lname(class="form-control") }}
+
+
+
+
+                                            
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.ssn.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.ssn(class="form-control") }}
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.email.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.email(class="form-control") }}
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.gender.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.gender(class="form-control") }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-6">
+                                        <div class="mb-3">
+                                            {{ form.birth_date.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.birth_date(class="form-control") }}
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.address.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.address(class="form-control") }}
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.phone.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.phone(class="form-control") }}
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.password.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.password(class="form-control") }}
+                                        </div>
+                                        <div class="mb-3">
+                                            {{ form.confirm_password.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+
+                                            {{ form.confirm_password(class="form-control") }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{ form.submit(class="btn btn-primary text-uppercase butto") }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted" style="border: none;">
+                <img src="../static/images/Cairo_University_Crest.png" style="width: 20px;">
+                <img src="../static/images/v1-removebg-preview.png" style="width: 27px;">
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <section class="foot">

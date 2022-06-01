@@ -109,7 +109,27 @@ body{
 
 /*Services starts*/
 .services{
-    background-color: #EFEFEF;
+    background:white;
+    margin-bottom: 0;
+}
+.services .srv{
+    background: none;
+    width: 80%;
+    color: white;
+    border: none;
+}
+
+.services .container .card{
+    background: none;
+    width: 80%;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.services .container .card:hover{
+    box-shadow: rgba(0,0,0,0.3) 10px 10px 5px;
+    transform: scale(1.1);
 }
 
 .services .serv-icon{
@@ -134,43 +154,22 @@ body{
     transform: translateX(-50%) translateY(-50%);
 }
 
-.services .content .cnt{
-    border: solid var(--orange-color) 2px;
-    border-radius: 10%;
-    height: 250px;
-
-}
-
-.services .icon-holder{
-    height: 100px;
-}
-.services .icon-holder svg{
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-
-.services .icon-holder .icon{
-    color: var(--blue-off-color);
-    font-size: 6rem;
-}
-
-
-.services .content .cnt h4{
-    color: var(--orange-color);
-    font-weight: bolder;
-    font-size: 16px;
-}
-.services .content .cnt h4 span{
-    font-size: 30px;
-}
-.services .content .cnt p{
-    color: var(--blue-off-color);
-    font-weight: lighter;
-    font-size: small;
-}
 /*Services ends*/
 /*About starts*/
+.about{
+    background-color: var(--white-off-color);
+    margin-top: 0;
+}
+
+.about .Ab{
+    width: 90%;
+    color: white;
+    border: none;
+    background: none;
+}
+
+
+
 .about .main-title .abt-icon{
     color: var(--white-off-color);
     font-size: 50px;
@@ -187,15 +186,82 @@ body{
 .about .abt h1{
     color: var(--orange-color);
 }
-
-.about .abt p{
-    color: var(--white-off-color);
-
-}
 /*About ends*/
 
 
+.team{
+    background-color: var(--blue-color);
+}
+.team .tm{
+    background:none;
+    width: 80%;
+    border: none;
+}
+.team .container .card{
+    background-color: rgba(255,255,255,30%) ;
+    width: 70%;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 0;
+    transition: 0.5s;
+}
 
+.team .container .card:hover{
+    background-color: rgba(255,255,255,50%) ;
+    box-shadow: rgba(0,0,0,0.3) 10px 10px 5px;
+    transform: scale(1.1);
+    border: none;
+}
+
+.team .main-title .abt-icon{
+    color: var(--white-off-color);
+    font-size: 50px;
+}
+
+.team .main-title .title{
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    color: var(--orange-color);
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.team .abt h1{
+    color: var(--orange-color);
+}
+
+.team .abt p{
+    color: var(--white-off-color);
+
+}
+
+
+.team .container .card .card-footer{
+    background-color:rgba(246, 107, 14,50%) ;
+    border-top: 1px solid var(--blue-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.team .container .card .card-footer .btn{
+    background: none;
+    border: solid 1px var(--blue-color);
+    color: var(--blue-color);
+    border-radius: 50%;
+    margin-left: 5px;
+    transition: 0.5s;
+}
+
+.team .container .card .card-footer .btn:hover,
+.team .container .card .card-footer .btn:active{
+    background-color: var(--blue-color);
+    color: white;
+    transform: scale(1.1);
+}
 
 
 /*footer starts*/
