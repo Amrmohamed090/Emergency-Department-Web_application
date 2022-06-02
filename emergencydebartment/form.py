@@ -60,8 +60,8 @@ class RegistrationForm(FlaskForm):
         except ValueError:
             print('5')
             raise ValidationError('SSN must be a 14 digit number')
-        user1 = Doctor.query.filter_by(ssn = ssn.data)
-        user2 = Patient.query.filter_by(ssn = ssn.data)
+        user1 = Doctor.query.filter_by(ssn = ssn.data).first()
+        user2 = Patient.query.filter_by(ssn = ssn.data).first()
         if user1 or user2:
              raise ValidationError('This SSN is already registered')
 
