@@ -60,11 +60,14 @@ class RegistrationForm(FlaskForm):
         except ValueError:
             print('5')
             raise ValidationError('SSN must be a 14 digit number')
-        
+        user1 = Doctor.query.filter_by(ssn = ssn.data)
+        user2 = Patient.query.filter_by(ssn = ssn.data)
+        if user1 or user2:
+             raise ValidationError('This SSN is already registered')
 
 class DoctorRegistrationForm(RegistrationForm):
     salary = IntegerField("Salary",  validators=[DataRequired()])
-    speciality = StringField('Speciality', validators=[DataRequired(), Length(min=1, max=30)])
+    speciality = StringField('Department', validators=[DataRequired(), Length(min=1, max=30)])
    
 
 
@@ -76,24 +79,11 @@ class PatientRegistrationForm(RegistrationForm):
 
 class ReportForm(FlaskForm):
     ssn = StringField('Patient SSN', validators=[DataRequired()])
+    title = StringField('Basic condition', validators=[DataRequired()])
     statement = TextAreaField('Statement', validators=[DataRequired()])
     images = MultipleFileField('upload files')
     submit = SubmitField('Add report')
 
-    def validate_ssn(self, ssn):
-        try:
-            x = int(ssn.data)
-            if not (len(ssn.data) == 14):
-                raise ValidationError('SSN must be a 14 digit number')
-        except ValueError:
-            raise ValidationError('SSN must be a 14 digit number')
-
-class SearchPatientForm(FlaskForm):
-    Fname = StringField('First Name')
-    Sname = StringField('Middle Name')
-    Lname = StringField('Last Name')
-    ssn = StringField("SSN")
-    submit = SubmitField('Search')
     def validate_ssn(self, ssn):
         try:
             x = int(ssn.data)

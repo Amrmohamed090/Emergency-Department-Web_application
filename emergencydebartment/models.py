@@ -30,7 +30,7 @@ class Doctor(User):
     id = db.Column(db.Integer, db.ForeignKey('user_table.id'),primary_key=True)
     hiring_date = db.Column(db.DateTime, nullable=False,default = datetime.utcnow)
     salary = db.Column(db.Integer, nullable=False)
-    speciallity = db.Column(db.String(80))
+    speciallity = db.Column(db.String(80),nullable=False)
     image_file = db.Column(db.String(20),nullable = False, default='default.jpg')
     
     email = db.Column(db.String(20),unique=True,nullable=False)
@@ -54,6 +54,7 @@ class Report(db.Model):
     patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'),nullable = False, default='Unknown Patient')
     doctor_id =  db.Column(db.Integer, db.ForeignKey('doctor.id'),nullable = False)
     date =  db.Column(db.DateTime, default = datetime.utcnow)
+    title = db.Column(db.String(50),nullable = False )
     statement = db.Column(db.String(300))
     images = db.relationship('Images',  backref='Report', lazy=True, foreign_keys = 'Images.report_id')
     

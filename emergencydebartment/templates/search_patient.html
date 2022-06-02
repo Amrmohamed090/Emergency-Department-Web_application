@@ -1,17 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
-<form method="post">
-<div class="input-group">
-    {{ form.ssn(class="form-control rounded" ,placeholder="SSN") }}
-</div>
-<div class="input-group">
-    {{ form.Fname(class="form-control rounded" ,placeholder="First Name") }}>
-    {{ form.Sname(class="form-control rounded" ,placeholder="Second Name") }}
-    {{ form.Lname(class="form-control rounded" ,placeholder="Last Name") }}
-</div>
+<form method='POST'>
     
-    {{ form.submit(class="sin btn btn-primary mt-4" ,style="width: 100px;") }}
+
+    <div class="input-group">
+        <input type="search" name="search" class="form-control rounded" placeholder="Search by SSN" aria-label="Search" aria-describedby="search-addon">
+        <button type="submit" class="btn btn-outline-primary">Search</button>
+      </div>
 
   
 </form>
+
+
+
+{% if patient %}
+{% for report in patient.report %}
+
+{{report}}
+
+{% endfor %}
+
+{% endif %}
+
+
+
+
 {% endblock %}

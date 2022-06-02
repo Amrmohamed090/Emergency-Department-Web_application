@@ -5,32 +5,53 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4 textgold">{{ legend }}</legend>
-            {% if exist %}
-            <div class="col-md-6 alertclass">
-                
-                <div class="alert alert-success">The report has been added, the patient is not regestered <br>
-                    Do you want to register the patient now?
-                </div>
-                
 
-            {% endif %}
+            <div class="col-md-6 alertclass">
+                {% with messages = get_flashed_messages(with_categories = true) %} 
+                {% if messages %} 
+                {% for category, message in messages %}
+                {% if category == 'registernow' %}
+                <div class="alert alert-success ">{{ message }}</div>
+                {% endif%}
+                {% endfor %} {% endif%} {% endwith %}
               </div>
+              
+              </div>
+              <div class="card-body" style="width: 80%;">
+                <div class="card">
+                    <div class="card-body" >
             <div class="form-group textwhite">
-                {{ form.ssn.label(class="form-control-label") }}
-                {% if form.ssn.errors %}
-                    {{ form.ssn(class="form-control form-control-lg is-invalid") }}
+                {{ form.ssn.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+                                            {% if form.ssn.errors %}
+                                            {{ form.ssn(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.ssn.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.ssn(class="form-control") }}
+                                            {% endif %}
+                
+                
+            </div>
+            <div class="form-group textwhite">
+                {{ form.title.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.ssn.errors %}
+                        {% for error in form.title.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.ssn(class="form-control form-control-lg") }}
+                    {{ form.title(class="form-control form-control-lg") }}
                     {% endif %}
+                
                 
             </div>
             <div class="form-group textwhite">
-                {{ form.statement.label(class="form-control-label") }}
+                {{ form.statement.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color); ") }}
                 {% if form.statement.errors %}
                     {{ form.statement(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
@@ -39,11 +60,11 @@
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.statement(class="form-control form-control-lg") }}
+                    {{ form.statement(class="form-control form-control-lg", style = "height:400px") }}
                 {% endif %}
 
 
-                {{ form.images.label(class="form-control-label") }}
+                {{ form.images.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
                 {% if form.images.errors %}
                     {{ form.images(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
@@ -56,6 +77,9 @@
                 {% endif %}
 
             </div>
+        </div>
+    </div>
+            
         </fieldset>
         <div class="form-group">
             {{ form.submit(class="btn btn-outline-info") }}

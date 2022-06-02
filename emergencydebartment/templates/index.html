@@ -33,30 +33,20 @@
       <div class="text-center">
         <img
           class="E-logo mb-2"
-          src="../static/images/search2.png"
+          src="../static/images/newreport.png"
           width="100px"
         />
-        <h1><i>Search</i></h1>
-        <p class="mb-2"><i>Search for patient or report</i></p>
+        <h1><i>Create</i></h1>
+        <p class="mb-2"><i>Create new report</i></p>
         <a
           class="calling_btn btn rounded-pill main-btn"
 
           href="{{ url_for('new_report') }}"
 
-          ><i class="fa-solid fa-search"></i> search</a
+          ><i class="fa-solid fa-plus"></i> Create   </a
         >
       </div>
 
-  <div class="text-center">
-    <img class="E-logo mb-2" src="../static/images/addac2.png" width="100px" />
-    <h1><i>Add Patient</i></h1>
-    <p class="mb-2"><i>Register a new patient</i></p>
-    <a
-      class="calling_btn btn rounded-pill main-btn"
-      href="{{ url_for('registerP') }}"
-      ><i class="fa-solid fa-user"></i> Register</a
-    >
-  </div>
 
   <div class="text-center">
     <img class="E-logo mb-2" src="../static/images/search2.png" width="100px" />
@@ -64,11 +54,12 @@
     <p class="mb-2"><i>Search for patient or report</i></p>
     <a
       class="calling_btn btn rounded-pill main-btn"
-      href="{{ url_for('search_patient') }}"
+      href="{{ url_for('search_patient_main') }}"
       ><i class="fa-solid fa-search"></i> search</a
     >
   </div>
-
+  
+  {% elif current_user.user_role == 'Admin'%}
   <div class="text-center">
     <img
       class="E-logo mb-2"
@@ -83,6 +74,7 @@
       ><i class="fa-solid fa-user"></i> patients</a
     >
   </div>
+
 
   {% endif %}
 </section>
@@ -357,7 +349,7 @@
                       <div class="card w-auto">
                           <div class="card-body text-center">
                               <i class="fa-solid fa-circle-user bottom-0 icon" style="color: var(--orange-color);font-size: 100px"></i>
-                              <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">amr kamal</h4>
+                              <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">amr  kamal</h4>
                               <p style="color: var(--blue-color); font-size: 18px; font-weight: bolder;"><i><span style="font-size: 13px;">Section:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  2</span><br>
                                   <span style="font-size: 13px;">Bench Number:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  6</span><br></i></p>
                           </div>
@@ -400,6 +392,21 @@
                           </div>
                       </div>
                   </div>
+                  <div class="col-md-4 col-lg-3" style="margin-bottom: 15px;">
+                    <div class="card w-auto">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-circle-user bottom-0 icon" style="color: var(--orange-color);font-size: 100px"></i>
+                            <h4 class="mt-2 text-uppercase" style="color: var(--blue-color); font-size: 20px; text-shadow: rgba(0,0,0,0.3) 10px 10px 5px; font-weight: lighter;">Youssef Ahmed</h4>
+                            <p style="color: var(--blue-color); font-size: 18px; font-weight: bolder;"><i><span style="font-size: 13px;">Section:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px">  3</span><br>
+                                <span style="font-size: 13px;">Bench Number:</span><span style="text-shadow: var(--orange-color) 10px 10px 5px"> 1</span><br></i></p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a href="#" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i></a>
+                            <a href="#" class="btn btn-primary"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#" class="btn btn-primary"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
               </div>
           </div>
       </div>
@@ -407,30 +414,5 @@
 </section>
 
 
-<!--    footer starts    -->
-
-<footer>
-  <ul class="social_icon">
-    <li>
-      <a
-        href="https://github.com/Amrmohamed090/Emergency-Department-Team19/tree/main/emergencydebartment"
-        ><i class="fa-brands fa-github"></i
-      ></a>
-    </li>
-  </ul>
-  <ul class="mn">
-    <li><a href="#landing">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#">Team</a></li>
-  </ul>
-  <p style="font-size: 15px; color: var(--gray-color)">
-    &copy; Database course Team 19
-  </p>
-</footer>
-<!--    footer ends    -->
-
-<script src="../static/script/bootstrap.bundle.min.js"></script>
-<script src="../static/script/all.min.js"></script>
 
 {% endblock %}

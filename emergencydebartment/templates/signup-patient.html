@@ -52,8 +52,16 @@
                                         <div class="mb-3">
 
                                             {{ form.Fname.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
+                                            {% if form.Fname.errors %}
+                                            {{ form.Fname(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.Fname.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
                                             {{ form.Fname(class="form-control") }}
+                                            {% endif %}
 
 
 
@@ -70,28 +78,56 @@
                                         </div>
                                         <div class="mb-3">
                                             {{ form.Lname.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
+                                            {% if form.Lname.errors %}
+                                            {{ form.Lname(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.Lname.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
                                             {{ form.Lname(class="form-control") }}
-
-
+                                            {% endif %}
 
 
                                             
                                         </div>
                                         <div class="mb-3">
                                             {{ form.ssn.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
+                                            {% if form.ssn.errors %}
+                                            {{ form.ssn(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.ssn.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
                                             {{ form.ssn(class="form-control") }}
+                                            {% endif %}
                                         </div>
                                         <div class="mb-3">
                                             {{ form.email.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
+                                            {% if form.email.errors %}
+                                            {{ form.email(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.email.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
                                             {{ form.email(class="form-control") }}
+                                            {% endif %}
                                         </div>
                                         <div class="mb-3">
                                             {{ form.gender.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
-                                            {{ form.gender(class="form-control") }}
+                                            
+            
+                                            {% for subfield in form.gender %}
+    
+                                            {{ subfield(class="form-check form-check-inline") }}
+                                            {{ subfield.label }}
+                                            {% endfor %}
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-lg-6">
@@ -107,18 +143,42 @@
                                         </div>
                                         <div class="mb-3">
                                             {{ form.phone.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
+                                            {% if form.phone.errors %}
+                                            {{ form.phone(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.phone.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
                                             {{ form.phone(class="form-control") }}
+                                            {% endif %}
                                         </div>
                                         <div class="mb-3">
                                             {{ form.password.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
+                                            {% if form.password.errors %}
+                                            {{ form.password(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.password.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
                                             {{ form.password(class="form-control") }}
+                                            {% endif %}
                                         </div>
                                         <div class="mb-3">
                                             {{ form.confirm_password.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
+                                            {% if form.confirm_password.errors %}
+                                            {{ form.confirm_password(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.confirm_password.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
                                             {{ form.confirm_password(class="form-control") }}
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

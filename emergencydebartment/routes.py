@@ -2,7 +2,7 @@
 from turtle import title
 from flask import  render_template, request, url_for ,flash, redirect, session
 from emergencydebartment import app, db, bcrypt, login_manager
-from emergencydebartment.form import LoginForm , DoctorRegistrationForm, PatientRegistrationForm, ReportForm, SearchPatientForm
+from emergencydebartment.form import LoginForm , DoctorRegistrationForm, PatientRegistrationForm, ReportForm
 from emergencydebartment.models import Doctor, Patient, Report, Images
 from flask_login import login_user, current_user , logout_user, login_required
 from functools import wraps
@@ -22,8 +22,9 @@ def login_required(role="ANY"):
         def decorated_view(*args, **kwargs):
             if not current_user.is_authenticated:
               return login_manager.unauthorized()
-            if ((current_user.user_role != role) and (role != "ANY")):
-                return login_manager.unauthorized()
+            if current_user.user_role != 'Admin':
+                if ((current_user.user_role != role) and (role != "ANY")):
+                    return login_manager.unauthorized()
             return fn(*args, **kwargs)
         return decorated_view
     return wrapper
@@ -79,8 +80,6 @@ def new_report():
     form = ReportForm()
     if form.validate_on_submit():
         
-
-        
         files = form.images.data
         print(files)
         
@@ -97,17 +96,16 @@ def new_report():
         
         
         patient = Patient.query.filter_by(ssn = form.ssn.data).first()
-        ssn_exist = 1
         if not patient:
-            report = Report(doctor_id=current_user.id,
+            report = Report(doctor_id=current_user.id, title = form.title.data,
                              statement = form.statement.data)
             db.session.add(report)
             db.session.commit()
-            flash('Your Report has been created! ', 'success')
-            return render_template('create_report.html', form=form, legend='Add report', title = "Add report" ,ssn_notexist = 1)
+            flash('Your Report has been created! note that this patient is not registered yet, Do you want to register the patient now?', 'registernow')
+            return render_template('create_report.html', form=form, legend='Add report', title = "Add report" )
         else:
             report = Report(patient_id = patient.id, doctor_id=current_user.id,
-                             statement = form.statement.data)
+                              title = form.title.data, statement = form.statement.data)
             db.session.add(report)
             db.session.commit()
             flash('Your Report has been created!', 'success')
@@ -116,13 +114,60 @@ def new_report():
         
     return render_template('create_report.html', form=form, legend='Add report', title = "Add report" )
 
+@app.route("/search_patient",methods=['GET','POST'])
+@login_required(role = 'Doctor')
+def search_patient_main():
+    if request.method == 'POST':
+    
+        try:
+            ssn= int(request.form.get('search'))
+        except ValueError:
+            flash('please enter a valid ssn', 'danger')
+            return redirect('search_patient_main')
+        if len(request.form.get('search')) != 14:
+            flash('please enter a valid ssn', 'danger')
+            return redirect('search_patient_main')
+        else:
+            patient = Patient.query.filter_by(ssn = ssn).first()
+            
+            if not patient:
+                flash('This SSN doen not exist', 'danger')
+                return redirect(url_for('search_patient_main'))
+            else:
+                print(patient)
+                patient_id =  patient.id
+                return redirect(url_for('search_patient', patient_id=patient_id))
+    
+    return render_template('search_patient.html', title = "search")
 
-@app.route("/search",methods=['GET','POST'])
-def search_patient():
-    form = SearchPatientForm()
-    if form.validate_on_submit():
-        pass
-    return render_template('search_patient.html',form=form, title = "search")
+@app.route("/search_patient/<int:patient_id>",methods=['GET','POST'])
+@login_required(role = 'Doctor')
+def search_patient(patient_id):
+    
+    
+    
+    if request.method == 'POST':
+    
+        try:
+            ssn= int(request.form.get('search'))
+        except ValueError:
+            name_list = request.form.get('search').split()
+            return redirect(url_for('search_patient', patient_id=patient_id))
+        if len(request.form.get('search')) != 14:
+            flash('please enter a valid ssn', 'danger')
+            return redirect(url_for('search_patient', patient_id=patient_id))
+        else:
+            patient = Patient.query.filter_by(ssn = ssn).first()
+            
+            if not patient:
+                flash('This SSN doen not exist', 'danger')
+                return redirect(url_for('search_patient', patient_id=patient_id))
+            else:
+                patient_id = patient.id
+                return redirect(url_for('search_patient', patient_id=patient_id))
+        
+    final_patient = Patient.query.get_or_404(patient_id)
+    return render_template('search_patient.html', title = "search", patient = final_patient)
 
 @app.route("/login",methods=['GET','POST'])
 def login():
@@ -157,12 +202,14 @@ def logout():
     return redirect(url_for('home'))
 
 @app.route("/patients_table")
+@login_required(role = 'Admin')
 def ptable():
     table = Patient.query.all()
     if request.method == 'POST':
         print('pri')
     return render_template('patients_table.html', table = table)
     
-@app.route("/report")
-def preport():
+@app.route("/report/<int:report_id>")
+def report(report_id):
+    post = Report.query.get_or_404(report_id)
     return render_template('patient_report.html')

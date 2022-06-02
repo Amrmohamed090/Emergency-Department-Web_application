@@ -77,6 +77,7 @@ body{
 .landing{
     background: var(--blue-color);
     min-height: 580px;
+    
 }
 .landing h1{
     color: red;
@@ -95,6 +96,7 @@ body{
     text-transform: uppercase;
     border: solid 1px var(--orange-color);
     color: whitesmoke;
+    
 }
 .landing .calling_btn:hover,
 .landing .calling_btn:focus{
@@ -270,8 +272,9 @@ body{
 
 footer{
     position: relative;
+    margin-top: 750px;
     width: 100%;
-    background-color:var(--orange-color);
+    background-color: rgba(246, 107, 14,50%);
     height: 150px;
     padding: 30px 50px;
     display: flex;
@@ -329,6 +332,16 @@ footer .mn li a{
     background: #f66b0e;
     color: white;
     border:1px solid #f66b0e;
+    text-transform: capitalize;
+    border-radius: 10px;
+    font-weight: bold;
+
+}
+
+.alert-danger {
+    background: #842029;
+    color: white;
+    border:1px solid #842029;
     text-transform: capitalize;
     border-radius: 10px;
     font-weight: bold;
