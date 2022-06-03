@@ -69,8 +69,9 @@
               <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerP') }}">Register a new Patient</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link p-2 p-lg-3" href="{{ url_for('new_report') }}">Add new report</a>
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('profile', doctor_id=current_user.id) }}">Profile</a>
             </li>
+            
             
             {% elif current_user.user_role == "Patient" %}
     
@@ -87,7 +88,7 @@
               <a class="nav-link p-2 p-lg-3 d-lg-none" href="#team">Team</a>
             </li>
             
-            {% else %}
+            {% elif current_user.is_anonymous %}
             <li class="nav-item">
               <a class="nav-link p-2 p-lg-3" href="#services">Services</a>
             </li>
@@ -101,15 +102,22 @@
             {% endif %}
             
           {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link p-2 p-lg-3 " href="{{url_for('reset_password')}}">Reset Password</a>
+          </li>
+          <li class="nav-item">
           <a
             href="{{ url_for('logout') }}"
             class="log-in btn btn-primary rounded-pill main-btn ms-1"
             >Logout</a>
+          </li>
             {% else %}
+            <li class="nav-item">
             <a
             href="{{ url_for('login') }}"
             class="log-in btn btn-primary rounded-pill main-btn ms-1"
             >Login</a>
+          </li>
           {% endif %}
           
         </div>

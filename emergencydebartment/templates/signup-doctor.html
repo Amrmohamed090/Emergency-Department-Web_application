@@ -116,7 +116,7 @@
                                                 {% endfor %}
                                             </div>
                                         {% else %}
-                                            {{ form.email(class="form-control") }}
+                                            {{ form.email(class="form-control", placeholder='leave empty for default email') }}
                                             {% endif %}
                                         </div>
                                         <div class="mb-3">
@@ -198,7 +198,7 @@
                                                 {% endfor %}
                                             </div>
                                         {% else %}
-                                            {{ form.password(class="form-control") }}
+                                            {{ form.password(class="form-control", placeholder='leave empty for default password') }}
                                             {% endif %}
                                         </div>
                                         <div class="mb-3">

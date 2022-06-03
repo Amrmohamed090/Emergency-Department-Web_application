@@ -11,7 +11,7 @@
                 {% if messages %} 
                 {% for category, message in messages %}
                 {% if category == 'registernow' %}
-                <div class="alert alert-success ">{{ message }}</div>
+                <div class="alert alert-success ">{{ message}} <a href="{{ url_for('registerP_withssn', ssn=form.ssn.data) }}">Register now</a></div>
                 {% endif%}
                 {% endfor %} {% endif%} {% endwith %}
               </div>

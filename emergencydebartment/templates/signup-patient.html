@@ -50,9 +50,10 @@
                                 <div class="row">
                                     <div class="col-md-4 col-lg-6">
                                         <div class="mb-3">
-
+                                            <!--first name label--> 
                                             {{ form.Fname.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
                                             {% if form.Fname.errors %}
+                                            <!--field if invalid--> 
                                             {{ form.Fname(class="form-control is-invalid") }}
                                             <div class="invalid-feedback">
                                                 {% for error in form.Fname.errors %}
@@ -60,6 +61,7 @@
                                                 {% endfor %}
                                             </div>
                                         {% else %}
+                                         <!--field if valid--> 
                                             {{ form.Fname(class="form-control") }}
                                             {% endif %}
 
@@ -67,18 +69,23 @@
 
                                         </div>
                                         <div class="mb-3">
+                                            
+                                            <!--first name label--> 
                                             {{ form.Sname.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-
+                                            
+                                            <!--field--> 
                                             {{ form.Sname(class="form-control") }}
-
-
-
-
                                             
                                         </div>
+
+
+
                                         <div class="mb-3">
+                                            <!--label for Lname--> 
                                             {{ form.Lname.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
                                             {% if form.Lname.errors %}
+                                            <!--if invalid-->                                            
+
                                             {{ form.Lname(class="form-control is-invalid") }}
                                             <div class="invalid-feedback">
                                                 {% for error in form.Lname.errors %}
@@ -86,10 +93,11 @@
                                                 {% endfor %}
                                             </div>
                                         {% else %}
+                                        <!--if valid-->
                                             {{ form.Lname(class="form-control") }}
                                             {% endif %}
 
-
+                                            <!--etc for every other label and field-->>
                                             
                                         </div>
                                         <div class="mb-3">
@@ -115,7 +123,7 @@
                                                 {% endfor %}
                                             </div>
                                         {% else %}
-                                            {{ form.email(class="form-control") }}
+                                            {{ form.email(class="form-control", placeholder="leave empty for a default email") }}
                                             {% endif %}
                                         </div>
                                         <div class="mb-3">
@@ -164,7 +172,7 @@
                                                 {% endfor %}
                                             </div>
                                         {% else %}
-                                            {{ form.password(class="form-control") }}
+                                            {{ form.password(class="form-control", placeholder="leave empty for a default password") }}
                                             {% endif %}
                                         </div>
                                         <div class="mb-3">

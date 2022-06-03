@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     gender = db.Column(db.String(6),nullable=False)
     phone = db.Column(db.String(11), default='Unknown')
     address = db.Column(db.String(70), default='Unknown')
-    birth_date = db.Column(db.DateTime)
+    birth_date = db.Column(db.DateTime,nullable=False)
     user_role = db.Column(db.String(15), nullable=False, default='Patient') 
     password = db.Column(db.String(61),nullable=False)
 
@@ -40,7 +40,7 @@ class Doctor(User):
 
 class Patient(User):
     id = db.Column(db.Integer, db.ForeignKey('user_table.id'),primary_key=True)
-    date =  db.Column(db.DateTime, default = datetime.utcnow)
+    date =  db.Column(db.DateTime, default = datetime.utcnow) #date of registeration
     report = db.relationship('Report',  backref='patient', lazy=True, foreign_keys = 'Report.patient_id')
     
     email = db.Column(db.String(20),unique=True)
@@ -51,8 +51,9 @@ class Patient(User):
 
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'),nullable = False, default='Unknown Patient')
+    patient_id = db.Column(db.Integer, db.ForeignKey('patient.id'),nullable = False, default=99999999999999)
     doctor_id =  db.Column(db.Integer, db.ForeignKey('doctor.id'),nullable = False)
+    patient_ssn = db.Column(db.Integer,nullable=False, default=99999999999999)
     date =  db.Column(db.DateTime, default = datetime.utcnow)
     title = db.Column(db.String(50),nullable = False )
     statement = db.Column(db.String(300))
@@ -63,7 +64,7 @@ class Report(db.Model):
 
 class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    image = db.Column(db.String(20),nullable = False)
+    image = db.Column(db.String(30),nullable = False)
     report_id = db.Column(db.Integer, db.ForeignKey('report.id'),nullable = False)
     def __repr__(self):
 

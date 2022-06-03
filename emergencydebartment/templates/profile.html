@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../static/styles/style.css">
     <link rel="stylesheet" href="../static/styles/galary.css">
     <link rel="stylesheet" href="../static/styles/box.css">
-    <title>report</title>
+    <title>profile</title>
 </head>
     <body>
 
@@ -39,21 +39,13 @@
                 <h1 class="serv-icon mb-0">
                   <i class="fas fa-file-invoice align-items-center"></i>
                 </h1>
-                <p class="title ">report</p>
+                <p class="title ">Doctor - {{doctor.Fname}}</p>
               </div>
 
                 <div class="textblue">            
-                    <h2>Report Date:<i class="textgold">{{report.date.strftime("%Y-%m-%d")}}</i></h2>
-                    <h2>Doctor:<i class="textgold">D.{{ doctor.Fname + " " +doctor.Lname}}</i> </h2>
-                    <!--   check if the patient is registered or not     -->
-                    {% if patient %}
-                    <h2>Patient:<i class="textgold">{{ patient.Fname + " " + patient.Lname }}</i></h2>
-                    <h2>SSN:<i class="textgold">{{ patient.ssn }}</i></h2>
-                    {% else %}
-                    <h2>Patient:<i class="textgold">unknown patient</i></h2>
-                    <h2>SSN:<i class="textgold"></i></h2>
-                    {% endif %}
-
+                    <h2>Name:<i class="textgold">{{ doctor.Fname }} {{ doctor.Lname }}</i></h2>
+                    <h2>Department:<i class="textgold">{{doctor.speciality}}</i> </h2>
+                    <h2>SSN:<i class="textgold">{{doctor.ssn}}</i></h2>
 
                 </div>
             </div>  
@@ -62,72 +54,69 @@
 
         <!--reportbox-->
         <div class="container">
-            <legend class="textgold text-uppercase"> report: {{ report.title }}</legend>
+            <legend class="textgold text-uppercase"> reports:</legend>
+            
+            
+            <!--If the doctor didnt have reports to show-->
+            {% if not reports_names %}
             <div class="box backwhite">
-                <p class="textblue">
-                   {{ report.statement }}
-                </p>
+                There is no reports to show for {{ doctor.Fname }}  {{ doctor.Lname }}
               
             </div>
+            <!--If he had reports to show-->
+            {% else %}
+            <div class="content-table ">
+
+
+                <div class="scrollme">
+                   
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr >
+                                
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Patient name</th>
+                                <th scope="col">SSN</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        {% for report, name in reports_names %}
+                        
+                        
+                            <tr>
+                                
+                                <td>{{report.title}}</td>
+                                <td>{{report.date.strftime("%Y-%m-%d, %H:%M")}}</td>
+                                <td>{{name}}</td>
+                                
+                                <td>{% if report.patient_ssn != 99999999999999 %}
+                                    <a href="{{ url_for('search_patient' , patient_ssn = report.patient_ssn)}}"> 
+                                    {{report.patient_ssn}}</a>
+                                        {% else %}
+                                    unknown ssn
+                                    {% endif %}
+                                        
+                                    </td>
+                            </tr>
+                            
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            {% endif %}
         </div>
 
         <!--end reportbox-->
         
         
-        <!-- gallery-->
-
-        <section class="gallery min-vh-100">
-            <div class="container-lg">
-                <legend class="textgold text-uppercase"> gallery :</legend>
-                <!-- al code al 5ra da 3shan y3rd al soar tlatat tlatat-->
-                <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
-                {% for image in images %}
-                
-                    <div class="col">
-                        <img src="..\static\uploads\{{image.image}}" class="gallery-item" alt="gallery">
-                    </div>
-                    
-                
-                    {% endfor %}
-                </div>
-                <!-- end al code al 5ra -->
 
 
-
-               
-            </div>
-        </section>
-        <!-- end gallery-->
-
-        <!-- Modal -->
-        <div class="modal fade" id="gallery-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-           <div class="modal-dialog modal-dialog-centered modal-lg">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-               </div>
-               <div class="modal-body">
-                  <img src=".\static\images\xray3.png" class="modal-img" alt="modal img">
-               </div>
-             </div>
-           </div>
-        </div>
-        <!-- end Modal -->
-
-  
-
-
-
-
-
-
-
-
-    
-
-
-        <section class="foot">
+        <section class="foot" style="margin-top: 59px;">
             <footer>
                 <ul class="social_icon">
                     <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
