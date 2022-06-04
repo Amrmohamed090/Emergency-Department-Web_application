@@ -1,3 +1,172 @@
-{% extends "layout.html" %}
-{% block content %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible"content="IE=edge"/>
+    <meta name="viewport"content="width-device-width,initial-scale=1.0"/>
+    <!--    import google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300;1,400;1,500;1,900&display=swap" rel="stylesheet">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/all.min.css">
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/login.css">
+    <link rel="stylesheet" href="../static/styles/table.css">
+    <link rel="stylesheet" href="../static/styles/box.css">
+    <link rel="stylesheet" href="../static/styles/dashboard.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
+
+    
+    <title>patients table</title>
+</head>
+    <body>
+
+        <!--   navbar starts     -->
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
+                </a>
+                    <a href="{{ url_for('home') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
+                </div>
+            </div>
+        </nav>
+        <!--   navbar end     -->
+
+        <!--   charts start     -->
+        <div class="content">
+            <div class="col-md-10">
+                <div class="row ">
+                    <div class="chartbox">
+                        <i class="fa fa-chart-pie fa-3x i"></i>
+                        <i class="span">Total Admins</i>
+                        <i class="nu"> number</i>  <!-- here put the number varible -->
+
+                    </div>
+
+                    <div class="chartbox">
+                        <i class="fa fa-chart-pie fa-3x i"></i>
+                        <i class="span">Total Doctors</i>
+                        <i class="nu"> number</i>  <!-- here put the number varible -->
+                        
+                    </div>
+
+                    <div class="chartbox">
+                        <i class="fa fa-chart-pie fa-3x i"></i>
+                        <i class="span">Total Patients</i>
+                        <i class="nu"> number</i>  <!-- here put the number varible -->
+
+                    </div>
+
+                    <div class="chartbox">
+                        <i class="fa fa-chart-pie fa-3x i"></i>
+                        <i class="span">Total Reports</i>
+                        <i class="nu"> number</i>  <!-- here put the number varible -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--   charts start     -->
+
+        <div class="content-table dtable ">
+            <div class="scrollme">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0" style="color: #f66b0e; font-weight: bold;">Recent Paitents registeration</h6>
+                    <a href="">Show All</a>
+                </div>
+               
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                        <tr >
+                            <th scope="col"><input class="form-check-input nvisible" type="checkbox"></th>
+                            <th scope="col" >#</th>
+                            <th scope="col">SSN</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col" >Last Name</th>
+                            <th scope="col" >Data of birth</th>
+                            <th scope="col" >Gender</th>
+                            <th scope="col" >Enter data</th>
+                            <th scope="col" >Adderss</th>
+                            <th scope="col" >phone</th>
+                            <th scope="col" >Medical History</th>
+                            <th scope="col" >Date of discharge</th>
+                            <th scope="col" >Refer departemnt</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <th scope="row">1</th>
+                            <td>41</td>
+                            <td>Abraham</td>
+                            <td>mohamed</td>
+                            <td>14/08/1974</td>
+                            <td>male</td>
+                            <td>15/06/2022</td>
+                            <td>23 Abdel Salam Arif St., BAB EL LOUK</td>
+                            <td>01155787168</td>
+                            <td>awdasfasfasf</td>
+                            <td>14/08/1974</td>
+                            <td>hemotolagy</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <th scope="row">2</th>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>jhon@email.com</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <th scope="row">3</th>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>Doe</td>
+                            <td>jhon@email.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+
+            </form>
+        </section>
+
+
+        <section class="foot">
+            <footer>
+                <ul class="social_icon">
+                    <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+                </ul>
+                <p style="font-size: 15px; color: var(--gray-color)">&copy; Database course Team 19</p>
+            </footer>
+        </section>
+
+        <script src="../static/script/bootstrap.bundle.min.js"></script>
+        <script src="../static/script/all.min.js"></script>
+    </body>
+</html>

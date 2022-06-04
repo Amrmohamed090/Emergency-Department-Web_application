@@ -363,5 +363,13 @@ footer .mn li a{
    color:  #112B3C;
 }
 
+.nvisible{
+    visibility: hidden;
+}
+.visible{
+    visibility: visible; 
+}
+
+
 
 /*Footer ends*/

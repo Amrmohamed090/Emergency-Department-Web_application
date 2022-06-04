@@ -448,3 +448,7 @@ def update_report(report_id):
             return redirect(url_for("update_report", report_id = report_id))
 
     return render_template('update_report.html', form=form, legend='Update report', title = "Update report" )
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")

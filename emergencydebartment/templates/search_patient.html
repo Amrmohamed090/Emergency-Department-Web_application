@@ -14,11 +14,11 @@
   
 </form>
 
-<div class="content-table " style="width: 80%; margin: auto; margin-top: 100px;">
+<div class="content-table nvisible" style="width: 80%; margin: auto; margin-top: 100px; ">
     <div class="scrollme">
        
 {% if patient %}
-        <table class="table table-bordered table-responsive" >
+        <table class="table table-bordered table-responsive visible" style="display: true;" >
             <thead>
                 <tr >
                     
@@ -57,7 +57,7 @@
         
                     {% if report_doctor_list %}
 
-        <table class="table table-bordered table-responsive" >
+        <table class="table table-bordered table-responsive visible" >
             <thead>
                 <tr >
                     <th scope="col">Report title</th>

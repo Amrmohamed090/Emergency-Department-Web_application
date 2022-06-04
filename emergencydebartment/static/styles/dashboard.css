@@ -1,0 +1,54 @@
+.chartbox{
+    width: 300px;
+    height: 100px;
+    float: left;
+    margin: 20px 20px;
+    margin-top: -230px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(250, 250, 250, 0.5);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 5px rgb(0, 0,0.15);
+    color: white;
+    border: 2px solid #f66b0e;
+
+}
+
+
+.span{
+   padding-right: 0;
+   text-align: right; 
+   margin: 0;
+   display: block;
+   position: relative;
+   bottom: 35px; 
+}
+.nu{
+    padding-right: 0;
+    text-align: right; 
+    margin: 0;
+    display: block;
+    position: relative;
+    bottom: 30px; 
+    color: black;
+    font-weight: bold;
+ }
+
+.i{
+    color: #f66b0e;
+    align-items: left;
+    padding-left: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.dtable{
+    position: relative;
+    bottom: 40%;
+    left: 120px;
+    width: 90%;
+}
+.dtable tr:hover{
+    background-color:rgba(250, 250, 250, 0.5);
+}
