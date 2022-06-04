@@ -26,7 +26,8 @@ note: if virtualenv is not installed in your device use "pip install virtualenv"
 
         env\Scripts\activate
               
-              note: IF you had an ERROR with 'cannot be loaded because running scripts is disabled on this system.'
+              note: IF you had an ERROR with 
+              'ERROR:....cannot be loaded because running scripts is disabled on this system.'
               open powershell as adminstrator ant type:
                "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
                and confirm with YES
