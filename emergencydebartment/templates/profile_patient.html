@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible"content="IE=edge"/>
+    <meta name="viewport"content="width-device-width,initial-scale=1.0"/>
+    <!--    import google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300;1,400;1,500;1,900&display=swap" rel="stylesheet">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/all.min.css">
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/login.css">
+    <link rel="stylesheet" href="../static/styles/table.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/galary.css">
+    <link rel="stylesheet" href="../static/styles/box.css">
+    <title>profile</title>
+</head>
+    <body>
+
+        <!--   navbar starts     -->
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
+                </a>
+                    <a href="{{ url_for('home') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
+                </div>
+            </div>
+        </nav>
+        <!--   navbar end     -->
+        <!--   info     -->
+        <section class="services pt-5 pb-5">
+            <div class="container">
+              <div class="main-title mt-5 mb-5 position-relative text-center">
+                <h1 class="serv-icon mb-0">
+                  <i class="fas fa-file-invoice align-items-center"></i>
+                </h1>
+                <p class="title ">patient - {{patient.Fname}}</p>
+              </div>
+
+                <div class="textblue">            
+                    <h2>Name:<i class="textgold">{{ patient.Fname }} {{ patient.Lname }}</i></h2>
+                    <h2>Department:<i class="textgold">{{patient.speciality}}</i> </h2>
+                    <h2>SSN:<i class="textgold">{{patient.ssn}}</i></h2>
+
+                </div>
+            </div>  
+        </section>
+        <!--end info-->
+
+        <!--reportbox-->
+        <div class="container">
+            <legend class="textgold text-uppercase"> reports:</legend>
+            
+            
+            <!--If the patient didnt have reports to show-->
+            {% if not reports_names %}
+            <div class="box backwhite">
+                There is no reports to show for {{ patient.Fname }}  {{ patient.Lname }}
+              
+            </div>
+            <!--If he had reports to show-->
+            {% else %}
+            <div class="content-table ">
+
+
+                <div class="scrollme">
+                   
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr >
+                                
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Patient name</th>
+                                <th scope="col">SSN</th>
+                                <th scope="col"></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        {% for report, name in reports_names %}
+                        
+                        
+                            <tr>
+                                
+                                <td>{{report.title}}</td>
+                                <td>{{report.date.strftime("%Y-%m-%d, %H:%M")}}</td>
+                                <td>{{name}}</td>
+                                
+                                <td>{% if report.patient_ssn != 99999999999999 %}
+                                    <a href="{{ url_for('search_patient' , patient_ssn = report.patient_ssn)}}" class="stretched-link"> 
+                                    {{report.patient_ssn}}</a>
+                                        {% else %}
+                                    unknown ssn
+                                    {% endif %}
+                                        
+                                    </td>
+                                    <td><a href="{{ url_for('report' , report_id = report.id)}}" class="stretched-link"> Open</a></td>
+
+                            </tr>
+                            
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            {% endif %}
+        </div>
+
+        <!--end reportbox-->
+        
+        
+
+
+        <section class="foot" style="margin-top: 59px;">
+            <footer>
+                <ul class="social_icon">
+                    <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+                </ul>
+                <p style="font-size: 15px; color: var(--gray-color)">&copy; Database course Team 19</p>
+            </footer>
+        </section>
+
+        <script src="../static/script/bootstrap.bundle.min.js"></script>
+        <script src="../static/script/all.min.js"></script>
+        <script src="../static/script/gallery.js"></script>
+    </body>
+</html>

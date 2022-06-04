@@ -58,23 +58,30 @@
             </li>
             {% if current_user.user_role == "Admin" %}
             <li class="nav-item">
-              <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerD') }}">Register a new doctor</a>
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('profile', doctor_id=current_user.id) }}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerD') }}">Register new doctor</a>
             </li>
             <li class="nav-item">
               <a class="nav-link p-2 p-lg-3" href="#about">Dashboard</a>
             </li>
+    
             
           {% elif current_user.user_role == "Doctor" %}
+          <li class="nav-item">
+            <a class="nav-link p-2 p-lg-3" href="{{ url_for('profile', doctor_id=current_user.id) }}">Profile</a>
+          </li>
             <li class="nav-item">
-              <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerP') }}">Register a new Patient</a>
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerP') }}">Register new Patient</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link p-2 p-lg-3" href="{{ url_for('profile', doctor_id=current_user.id) }}">Profile</a>
-            </li>
+            
             
             
             {% elif current_user.user_role == "Patient" %}
-    
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('profile_patient', patient_id=current_user.id) }}">Profile</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link p-2 p-lg-3" href="#about">Contact your doctor</a>
             </li>

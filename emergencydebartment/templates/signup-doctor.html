@@ -120,19 +120,7 @@
                                             {{ form.phone(class="form-control") }}
                                             {% endif %}
                                         </div>
-                                        <div class="mb-3">
-                                            {{ form.email.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-                                            {% if form.email.errors %}
-                                            {{ form.email(class="form-control is-invalid") }}
-                                            <div class="invalid-feedback">
-                                                {% for error in form.email.errors %}
-                                                    <span>{{ error }}</span>
-                                                {% endfor %}
-                                            </div>
-                                        {% else %}
-                                            {{ form.email(class="form-control", placeholder='leave empty for default email') }}
-                                            {% endif %}
-                                        </div>
+                                        
                                         <div class="mb-3">
                                             {{ form.salary.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
                                             {% if form.salary.errors %}
@@ -146,7 +134,18 @@
                                             {{ form.salary(class="form-control") }}
                                             {% endif %}
                                         </div>
+                                        <div class="mb-3">
+                                            {{ form.gender.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+                                            {% for subfield in form.gender %}
+    
+                                            {{ subfield(class="form-check form-check-inline") }}
+                                            {{ subfield.label }}
+                               
+                                        {% endfor %}
+                                            
+                                        </div>
                                     </div>
+
                                     <div class="col-md-4 col-lg-6">
                                         <div class="mb-3">
                                             {{ form.speciality.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
@@ -179,15 +178,20 @@
 
                                             {{ form.address(class="form-control") }}
                                         </div>
+                                        
+
                                         <div class="mb-3">
-                                            {{ form.gender.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
-                                            {% for subfield in form.gender %}
-    
-                                            {{ subfield(class="form-check form-check-inline") }}
-                                            {{ subfield.label }}
-                               
-                                        {% endfor %}
-                                            
+                                            {{ form.email.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+                                            {% if form.email.errors %}
+                                            {{ form.email(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.email.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.email(class="form-control", placeholder='leave empty for default email') }}
+                                            {% endif %}
                                         </div>
                                         
                                         <div class="mb-3">

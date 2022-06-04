@@ -29,7 +29,7 @@ class RegistrationForm(FlaskForm):
     ssn = StringField("SSN",  validators=[DataRequired()])
     email = StringField('Email', validators=[ ])
     birth_date = DateField('BirthDate')
-    gender = RadioField(choices=["male","female"])
+    gender = RadioField(choices=["Male","Female"])
     address = StringField('Home address', validators=[DataRequired(), Length(min=1, max=30)])
     phone = StringField('Phone number')
     password = PasswordField('Password', validators=[ Length(min=0, max=30)])
@@ -91,12 +91,15 @@ class PatientRegistrationForm(RegistrationForm):
 class ReportForm(FlaskForm):
     ssn = StringField('Patient SSN')
     title = StringField('Basic condition', validators=[DataRequired()])
-    statement = TextAreaField('Statement', validators=[DataRequired()])
-    images = MultipleFileField('upload files')
+    condition = TextAreaField('Condition', validators=[DataRequired()])
+    urgency = RadioField('Urgency level', choices=["Level 1","Level 2", "Level 3", "Level 4"])
+    treatment = TextAreaField('Treatment given')
+    recommendation = TextAreaField('Recommendation')
+    images = MultipleFileField('Upload Files')
     submit = SubmitField('Add report')
 
     def validate_ssn(self, ssn):
-        if ssn:
+        if ssn.data:
             try:
                 x = int(ssn.data)
                 print(len(str(ssn.data)))

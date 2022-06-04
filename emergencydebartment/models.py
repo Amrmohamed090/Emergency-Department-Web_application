@@ -56,11 +56,14 @@ class Report(db.Model):
     patient_ssn = db.Column(db.Integer,nullable=False, default=99999999999999)
     date =  db.Column(db.DateTime, default = datetime.utcnow)
     title = db.Column(db.String(50),nullable = False )
-    statement = db.Column(db.String(300))
+    condition = db.Column(db.String(100))
+    urgency = db.Column(db.String(7))
+    treatment = db.Column(db.String(100))
+    recommendation = db.Column(db.String(100))
     images = db.relationship('Images',  backref='Report', lazy=True, foreign_keys = 'Images.report_id')
     
     def __repr__(self):
-        return f"Report('{self.statement}')"
+        return f"Report('{self.title}')"
 
 class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)

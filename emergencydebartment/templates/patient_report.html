@@ -40,7 +40,14 @@
                   <i class="fas fa-file-invoice align-items-center"></i>
                 </h1>
                 <p class="title ">report</p>
+                {% if current_user.id == report.doctor_id %}
+                <a class="textgold" href="{{ url_for('update_report', report_id=report.id) }}">UPDATE</a>
+                {% endif %}
+                
               </div>
+
+
+              
 
                 <div class="textblue">            
                     <h2>Report Date:<i class="textgold">{{report.date.strftime("%Y-%m-%d")}}</i></h2>
@@ -48,12 +55,16 @@
                     <!--   check if the patient is registered or not     -->
                     {% if patient %}
                     <h2>Patient:<i class="textgold">{{ patient.Fname + " " + patient.Lname }}</i></h2>
-                    <h2>SSN:<i class="textgold">{{ patient.ssn }}</i></h2>
+                    
                     {% else %}
                     <h2>Patient:<i class="textgold">unknown patient</i></h2>
+                    
+                    {% endif %}
+                    {% if report.patient_ssn != 99999999999999 %}
+                    <h2>SSN:<i class="textgold">{{ report.patient_ssn }}</i></h2>
+                    {% else %}
                     <h2>SSN:<i class="textgold"></i></h2>
                     {% endif %}
-
 
                 </div>
             </div>  
@@ -65,7 +76,10 @@
             <legend class="textgold text-uppercase"> report: {{ report.title }}</legend>
             <div class="box backwhite">
                 <p class="textblue">
-                   {{ report.statement }}
+                   Condition:                {{ report.condition }}<br>
+                   Urgency level:             {{ report.urgency }}<br>
+                   treatment given:           {{ report.treatment }}<br>
+                   Recommendation:            {{ report.recommendation }}<br>
                 </p>
               
             </div>
@@ -79,18 +93,16 @@
         <section class="gallery min-vh-100">
             <div class="container-lg">
                 <legend class="textgold text-uppercase"> gallery :</legend>
-                <!-- al code al 5ra da 3shan y3rd al soar tlatat tlatat-->
+                
                 <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
                 {% for image in images %}
                 
                     <div class="col">
                         <img src="..\static\uploads\{{image.image}}" class="gallery-item" alt="gallery">
                     </div>
-                    
-                
                     {% endfor %}
                 </div>
-                <!-- end al code al 5ra -->
+                
 
 
 

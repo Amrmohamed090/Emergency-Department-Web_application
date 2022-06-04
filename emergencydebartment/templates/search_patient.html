@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <link rel="stylesheet" href="../static/styles/table.css">
-
+<link rel="stylesheet" href="../static/styles/box.css">
 <form method='POST'>
     
 
@@ -70,25 +70,23 @@
                 </tr>
             </thead>
             <tbody>
+                {% for report, doctor in report_doctor_list %}
                 <tr>
                     
-                    {% for report, doctor in report_doctor_list %}
                     <td>{{ report.title }}</td>
                     <td>Dr. {{ doctor.Fname + " " +doctor.Lname }}</td>
                     <td>{{ doctor.speciallity }}</td>
                     <td>{{ report.date.strftime("%Y-%m-%d, %H:%M") }}</td>
                     <td><a href="{{url_for('report', report_id=report.id)}}">read report</a></td>
-                   {% endfor %}
-                   
-                    
-                    
-                   
+
                 </tr>
+                {% endfor %}
                 
             </tbody>
             
         </table>
         {% endif %}
+       
     </div>
 </div>
 

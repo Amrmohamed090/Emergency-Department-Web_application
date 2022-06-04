@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 textgold">{{ legend }}</legend>
+
+            <div class="col-md-6 alertclass">
+                {% with messages = get_flashed_messages(with_categories = true) %} 
+                {% if messages %} 
+                {% for category, message in messages %}
+                {% if category == 'registernow' and form.ssn.data %}
+                <div class="alert alert-success ">{{ message}} <a href="{{ url_for('registerP_withssn', ssn=form.ssn.data) }}">Register now</a></div>
+                {% endif %}
+                {% endfor %} {% endif%} {% endwith %}
+              </div>
+              
+              </div>
+            <div class="card-body" style="width: 80%;">
+                <div class="card">
+                    <div class="card-body" >
+                        <div class="form-group textwhite">
+                             {{ form.ssn.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+                                {% if form.ssn.errors %}
+                                {{ form.ssn(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.ssn.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                    {% else %}
+                                    {{ form.ssn(class="form-control") }}
+                                    {% endif %}
+                
+                        </div>
+                        <div class="form-group textwhite">
+                            {{ form.title.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+                            {% if form.title.errors %}
+                                {{ form.title(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                     {% for error in form.title.errors %}
+                                     <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                    {% else %}
+                                    {{ form.title(class="form-control form-control-lg") }}
+                                    {% endif %}
+                         </div>
+
+            <div class="form-group textwhite">
+                {{ form.condition.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color); ") }}
+                {% if form.condition.errors %}
+                    {{ form.condition(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.condition.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.condition(class="form-control form-control-lg", style = "height:200px") }}
+                {% endif %}
+            </div>
+                <div class="form-check" style="margin-top: 20px; margin-bottom: 20px;">
+                    {{ form.urgency.label(class="form-label float-start-inline" ,style="font-weight: bolder; color: var(--blue-color); ") }}
+                        {% for subfield in form.urgency %}
+    
+                                            {{ subfield(class="form-check form-check-inline", style="margin-left:10px;") }}
+                                            {{ subfield.label(style="color: var(--blue-color);margin-right:10px;") }}
+                               
+                                        {% endfor %}
+                                    </div>
+                    <div class="form-group textwhite">
+                        {{ form.treatment.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color); ") }}
+                        {% if form.treatment.errors %}
+                            {{ form.treatment(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.treatment.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.treatment(class="form-control form-control-lg", style = "height:200px") }}
+                        {% endif %}
+                    </div>
+                        <div class="form-group textwhite">
+                            {{ form.recommendation.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color); ") }}
+                            {% if form.recommendation.errors %}
+                                {{ form.recommendation(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.recommendation.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.recommendation(class="form-control form-control-lg", style = "height:200px") }}
+                            {% endif %}
+                        </div>
+
+                {{ form.images.label(class="form-label float-start" ,style="font-weight: bolder; color: var(--blue-color);") }}
+                {% if form.images.errors %}
+                    {{ form.images(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.images.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.images(class="form-control form-control-lg") }}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    
+</fieldset>
+<div class="form-group position-relative ">
+    {{ form.submit(class="btn btn-outline-info") }}
+</div>
+    </form>
+</div>
+{% endblock %}

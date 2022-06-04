@@ -78,6 +78,7 @@
                                 <th scope="col">Date</th>
                                 <th scope="col">Patient name</th>
                                 <th scope="col">SSN</th>
+                                <th scope="col"></th>
                                 
                             </tr>
                         </thead>
@@ -93,13 +94,15 @@
                                 <td>{{name}}</td>
                                 
                                 <td>{% if report.patient_ssn != 99999999999999 %}
-                                    <a href="{{ url_for('search_patient' , patient_ssn = report.patient_ssn)}}"> 
+                                    <a href="{{ url_for('search_patient' , patient_ssn = report.patient_ssn)}}" class="stretched-link"> 
                                     {{report.patient_ssn}}</a>
                                         {% else %}
                                     unknown ssn
                                     {% endif %}
                                         
                                     </td>
+                                    <td><a href="{{ url_for('report' , report_id = report.id)}}" class="stretched-link"> Open</a></td>
+
                             </tr>
                             
                             {% endfor %}
