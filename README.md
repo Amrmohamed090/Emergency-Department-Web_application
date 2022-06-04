@@ -1,5 +1,18 @@
 # Emergency-Department-Team19
 
+Admin:
+admin@admin.com
+Pass:admin
+
+Doctor:
+doctor@doctor.com
+Pass:doctor
+
+When register a patient
+Defualt email: firstname+last 4 digit in ssn @hospital.com
+Defualtpass: ssn
+
+
 instructions to run this program:
 
 OPEN CMD
