@@ -25,6 +25,12 @@ note: if virtualenv is not installed in your device use "pip install virtualenv"
 4- activate the virtual environment
 
               env\Scripts\activate
+              
+              note: IF you are using vscode terminal and had an ERROR with 'cannot be loaded because running scripts is disabled on this system.'
+              open powershell as adminstrator ant type:
+               "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine"
+               and confirm with YES
+                    
 
 5-install requirment packages
 
