@@ -34,7 +34,7 @@ note: if virtualenv is not installed in your device use "pip install virtualenv"
 
 5-install requirment packages
 
-        pip install -r requirements.text
+        pip install -r requirements.txt
 
 6-run the app
 
