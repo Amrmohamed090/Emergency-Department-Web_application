@@ -46,9 +46,10 @@ def registerD():
     form =  DoctorRegistrationForm()
     
     if form.validate_on_submit():
+        print('heeere')
         #set defualt email and password if left empty
         if not form.email.data:
-            form.email.data = form.Fname.data + str(form.ssn.data)[0:4]  + '@hospital.com'
+            form.email.data = form.Fname.data + str(form.ssn.data)[11:14]  + '@hospital.com'
         if not form.password.data:
             form.password.data = str(form.ssn.data)
         #encrypting password
@@ -71,7 +72,7 @@ def registerP():
     form =  PatientRegistrationForm()
     if form.validate_on_submit():
         if not form.email.data:
-            form.email.data = form.Fname.data + str(form.ssn.data)[0:4]  + '@hospital.com'
+            form.email.data = form.Fname.data + str(form.ssn.data)[11:14]  + '@hospital.com'
         if not form.password.data:
             form.password.data = str(form.ssn.data)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -105,7 +106,7 @@ def registerP_withssn(ssn):
     form =  PatientRegistrationForm()
     if form.validate_on_submit():
         if not form.email.data:
-            form.email.data = form.Fname.data + str(form.ssn.data)[0:4]  + '@hospital.com'
+            form.email.data = form.Fname.data + str(form.ssn.data)[11:14]  + '@hospital.com'
         if not form.password.data:
             form.password.data = str(form.ssn.data)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')

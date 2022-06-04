@@ -6,13 +6,6 @@ from emergencydebartment.models import Doctor, Patient
 import re   
   
  
-  
-def check(email):   
-  
-    if(re.search(regex,email)):   
-        return 1   
-    else:   
-        return 0
 
 
 
@@ -44,8 +37,9 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('sign up')
     def validate_email(self, email):
         if email.data:
-            regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$' 
-            if not (re.search(regex,email)):   
+            regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+            
+            if not (re.fullmatch(regex,email.data)):   
                 raise ValidationError('email is invalid, please enter a valid email')
             email1 =  Doctor.query.filter_by(email=email.data).first()
             email2 =  Patient.query.filter_by(email=email.data).first()
