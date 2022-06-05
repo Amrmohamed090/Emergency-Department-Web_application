@@ -74,13 +74,11 @@
                                 <td>{{report.date.strftime("%Y-%m-%d, %H:%M")}}</td>
                                 <td>{{name}}</td>
                                 
-                                <td>{% if report.patient_ssn != 99999999999999 %}
+                                <td>
                                     
                                         <a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="tel:+2{{phone}} "> <i class="fa-solid fa-phone"></i> {{phone}}</a>
                                     
-                                        {% else %}
-                                    unknown ssn
-                                    {% endif %}
+                                        
                                         
                                     </td>
                                     <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('report', report_id=report.id)}} "> <i class="fa-solid fa-paste"></i> Read</a></td>
