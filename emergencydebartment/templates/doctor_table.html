@@ -24,6 +24,7 @@
                                     <th scope="col" >Gender</th>
                                     <th scope="col" >speciality</th>
                                     <th scope="col" >phone</th>
+                                    <th scope="col" >Hiring date</th>
                                     <th scope="col" >Number of reports</th>
                                     <th scope="col" >Schedule Shifts</th>
                                     <th scope="col" ></th>
@@ -48,6 +49,7 @@
                                     <td>{{doctor.gender}}</td>
                                     <td>{{doctor.speciallity}}</td>
                                     <td>{{doctor.phone}}</td>
+                                    <td>{{doctor.hiring_date.strftime('%Y-%m-%d')}}</td>
                                     <td>{{number_of_reports}}</td>
                                     <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('update_shift',doctor_id=doctor.id)}} "> <i class="fa-solid fa-paste"></i> Schedule</a></a></td>
                                     <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('profile',doctor_id=doctor.id)}} "> <i class="fa-solid fa-user"></i> Profile</a></a></td>
