@@ -1,47 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible"content="IE=edge"/>
-    <meta name="viewport"content="width-device-width,initial-scale=1.0"/>
-    <!--    import google fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300;1,400;1,500;1,900&display=swap" rel="stylesheet">
-    <!--    -->
-    <link rel="stylesheet" href="../static/styles/all.min.css">
-    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
-    <!--    -->
-    <link rel="stylesheet" href="../static/styles/login.css">
-    <link rel="stylesheet" href="../static/styles/table.css">
-    <title>patients table</title>
-</head>
-    <body>
-
-        <!--   navbar starts     -->
-        <nav class="navbar navbar-expand-lg sticky-top">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url_for('home') }}">
-                    <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
-                </a>
-                    <a href="{{ url_for('home') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
-                </div>
-            </div>
-        </nav>
-        <!--   navbar end     -->
-        <div class="col-md-6 alertclass">
-      {% with messages = get_flashed_messages(with_categories = true) %} 
-      {% if messages %} 
-      {% for category, message in messages %}
-      {% if category == 'success' or category == 'danger' %}
-      <div class="alert alert-{{ category }}">{{ message }}</div>
-      {% endif%}
-      {% endfor %} {% endif%} {% endwith %}
-    </div>
-        
-       
+{% extends "layout.html" %}
+{% block content %}
+<legend class="border-bottom mb-4 legend align-text-center">Doctors Table</legend>
         <div class="content">
-                <div class="content-table ">
+                <div class="content-table dtable">
 
 
                     <div class="scrollme">
@@ -64,13 +25,16 @@
                                     <th scope="col" >speciality</th>
                                     <th scope="col" >phone</th>
                                     <th scope="col" >Number of reports</th>
+                                    <th scope="col" >Schedule Shifts</th>
+                                    <th scope="col" ></th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
+                                
                         {% for doctor, number_of_reports in table %}
                             
-                                <tr>
+                                <tr class='clickable-row' data-href="{{ url_for('profile', doctor_id=doctor.id) }}">
                                     
                                     <td>{{doctor.ssn}}</td>
                                     
@@ -80,15 +44,18 @@
                                     <td>{{doctor.Fname}}  {{doctor.Lname}}</td>
                                     {% endif %}
                                     
-                                    <td>{{doctor.birth_date}}</td>
+                                    <td>{{doctor.birth_date.strftime('%Y-%m-%d')}}</td>
                                     <td>{{doctor.gender}}</td>
                                     <td>{{doctor.speciallity}}</td>
                                     <td>{{doctor.phone}}</td>
                                     <td>{{number_of_reports}}</td>
-                                   
+                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('update_shift',doctor_id=doctor.id)}} "> <i class="fa-solid fa-paste"></i> Schedule</a></a></td>
+                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('profile',doctor_id=doctor.id)}} "> <i class="fa-solid fa-user"></i> Profile</a></a></td>
+
                                 
                                 {% endfor %}
                             </tbody>
+                            
                         </table>
                         <script>
                             function nameF() {
@@ -156,6 +123,51 @@
                             }
                             </script>
                     </div>
+                    
+                    <style>
+                        .button {
+                          display: inline-block;
+                          border-radius: 10px;
+                          background-color: #f66b0e;
+                          border: none;
+                          color: #FFFFFF;
+                          text-align: center;
+                          font-size: 99%;
+                          padding: 2%;
+                          width: 15%;
+                          transition: all 0.5s;
+                          cursor: pointer;
+                          margin-left: 41.5%;
+                            margin-bottom: 2%;
+                        }
+                        
+                        .button span {
+                          cursor: pointer;
+                          display: inline-block;
+                          position: relative;
+                          transition: 0.5s;
+                        }
+                        
+                        .button span:after {
+                          content: '\00bb';
+                          position: absolute;
+                          opacity: 0;
+                          top: 0;
+                          right: -20px;
+                          transition: 0.5s;
+                        }
+                        
+                        .button:hover span {
+                          padding-right: 25px;
+                        }
+                        
+                        .button:hover span:after {
+                          opacity: 1;
+                          right: 0;
+                        }
+                        </style>
+
+<a href="{{url_for('schedules')}}"><button  id="scheduals" class="button" style="vertical-align:middle" ><span> To Schedules </span></button></a>
                 </div>
                     </div>
 
@@ -169,16 +181,4 @@
         </section>
 
 
-        <section class="foot">
-            <footer>
-                <ul class="social_icon">
-                    <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
-                </ul>
-                <p style="font-size: 15px; color: var(--gray-color)">&copy; Database course Team 19</p>
-            </footer>
-        </section>
-
-        <script src="../static/script/bootstrap.bundle.min.js"></script>
-        <script src="../static/script/all.min.js"></script>
-    </body>
-</html>
+    {% endblock %}

@@ -51,7 +51,7 @@
 
                 <div class="textblue">            
                     <h2>Report Date:<i class="textgold">{{report.date.strftime("%Y-%m-%d")}}</i></h2>
-                    <h2>Doctor:<i class="textgold">D.{{ doctor.Fname + " " +doctor.Lname}}</i> </h2>
+                    <h2>Doctor:<i class="textgold">Dr.{{ doctor.Fname + " " +doctor.Lname}}</i> </h2>
                     <!--   check if the patient is registered or not     -->
                     {% if patient %}
                     <h2>Patient:<i class="textgold">{{ patient.Fname + " " + patient.Lname }}</i></h2>

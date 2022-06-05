@@ -268,11 +268,15 @@ body{
 
 /*footer starts*/
 
-
+legend{
+    margin-top: 5%;
+    color: white;
+    text-align: center;
+}
 
 footer{
     position: relative;
-    margin-top: 750px;
+    margin-top: 500px;
     width: 100%;
     background-color: rgba(246, 107, 14,50%);
     height: 150px;

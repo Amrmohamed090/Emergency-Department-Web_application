@@ -1,4 +1,5 @@
 
+import email
 from turtle import title
 from flask import  render_template, request, url_for ,flash, redirect, session, abort
 import secrets
@@ -10,6 +11,7 @@ from flask_login import login_user, current_user , logout_user, login_required
 from functools import wraps
 import os
 from werkzeug.utils import secure_filename
+import json
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'pdf'])
 
@@ -36,7 +38,11 @@ def login_required(role="ANY"):
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('index.html')
+
+    number_of_doctors = len(Doctor.query.all())
+    number_of_patients  = len(Patient.query.all())
+    number_of_reports = len(Report.query.all())
+    return render_template('index.html', number_of_doctors=number_of_doctors, number_of_patients=number_of_patients, number_of_reports=number_of_reports)
 ##############################################
 
 #REGISTER DOCTOR
@@ -46,7 +52,6 @@ def registerD():
     form =  DoctorRegistrationForm()
     
     if form.validate_on_submit():
-        print('heeere')
         #set defualt email and password if left empty
         if not form.email.data:
             form.email.data = form.Fname.data + str(form.ssn.data)[11:14]  + '@hospital.com'
@@ -61,8 +66,8 @@ def registerD():
                         address=form.address.data, speciallity = form.speciality.data, user_role="Doctor")
         db.session.add(doctor)
         db.session.commit()
-        flash('a doctor has been registered', 'success')
-        return redirect(url_for('home'))
+        flash("Doctor has been registerd, please schedule the doctors working shifts ", 'success')
+        return redirect(url_for('shift', doctor_id = doctor.id))
     return render_template('signup-doctor.html', form=form , title = "Register a Doctor")
 ##############################################
 #REGISTER PATIENT
@@ -72,7 +77,11 @@ def registerP():
     form =  PatientRegistrationForm()
     if form.validate_on_submit():
         if not form.email.data:
-            form.email.data = form.Fname.data + str(form.ssn.data)[11:14]  + '@hospital.com'
+            patient_with_same_email = Patient.query.filter_by(email = form.email.data).first()
+            if  patient_with_same_email :
+                form.email.data = form.Fname.data + str(form.ssn.data)[11:14]+len(patient_with_same_email)  + '@hospital.com'
+            else:
+                form.email.data = form.Fname.data + str(form.ssn.data)[11:14]  + '@hospital.com'
         if not form.password.data:
             form.password.data = str(form.ssn.data)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -92,10 +101,10 @@ def registerP():
                 report.patient_id = patient.id
                 report.patient_ssn = patient.ssn
                 db.session.commit()
-            flash('a Patient has been registered, there is ' + str(len(reports)) + ' medical reports has been registered with this patient SSN', 'success')
+            flash('Patient has been registered, there is ' + str(len(reports)) + ' medical reports has been registered with this patient SSN', 'success')
             return redirect(url_for('home'))
     
-        flash('a Patient has been registered', 'success')
+        flash('Patient has been registered', 'success')
         return redirect(url_for('home'))
     return render_template('signup-patient.html', form=form, title = "Register a Patient")
 ##############################################
@@ -106,7 +115,11 @@ def registerP_withssn(ssn):
     form =  PatientRegistrationForm()
     if form.validate_on_submit():
         if not form.email.data:
-            form.email.data = form.Fname.data + str(form.ssn.data)[11:14]  + '@hospital.com'
+            patient_with_same_email = Patient.query.filter_by(email = form.email.data)
+            if  patient_with_same_email :
+                form.email.data = form.Fname.data + str(form.ssn.data)[11:14]+len(patient_with_same_email)  + '@hospital.com'
+            else:
+                form.email.data = form.Fname.data + str(form.ssn.data)[11:14]  + '@hospital.com'
         if not form.password.data:
             form.password.data = str(form.ssn.data)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -126,7 +139,7 @@ def registerP_withssn(ssn):
                 report.patient_id = patient.id
                 report.patient_ssn = patient.ssn
                 db.session.commit()
-            flash('a Patient has been registered, there is ' + str(len(reports)) + 'medical reports has been registered with this patient SSN', 'success')
+            flash('Patient has been registered, there is ' + str(len(reports)) + 'medical reports has been registered with this patient SSN', 'success')
             return redirect(url_for('home'))
         flash('a Patient has been registered', 'success')
         return redirect(url_for('home'))
@@ -307,6 +320,10 @@ def reset_password():
             db.session.commit()
             flash('your password has been changed','success')
             return redirect(url_for('home'))
+
+        else:
+            flash('password is incorrect, please check you typed your old password correctly', 'danger')
+            return redirect(url_for('reset_password'))
     return render_template('reset_password.html', form=form)
 
 
@@ -386,13 +403,15 @@ def profile_patient(patient_id):
     patient = Patient.query.get_or_404(patient_id)
     reports = patient.report
     doctors_names_list = list()
+    doctors_phone_list = list()
    
     for report in reports:
        doctors_names_list.append(Doctor.query.get(report.doctor_id).Fname + " " + Doctor.query.get(report.doctor_id).Lname)
+       doctors_phone_list.append(Doctor.query.get(report.doctor_id).phone)
 
-    print(doctors_names_list)
     
-    return render_template('profile_patient.html', patient= patient, reports_names= list(zip(reports, doctors_names_list)))
+    
+    return render_template('profile_patient.html', patient= patient, reports_names= list(zip(reports, doctors_names_list, doctors_phone_list)))
 ##############################################
 
 
@@ -424,25 +443,25 @@ def update_report(report_id):
         report.urgency = form.urgency.data
         report.condition = form.condition.data
         report.title = form.title.data
-        print('11')
+        
         if form.ssn.data != report.patient_ssn: #doctor updated ssn
-            print('22')
+            
             patient = Patient.query.filter_by(ssn = form.ssn.data).first()
             if patient: #doctor updated ssn to an existing patient
-                print('33')
+                
                 report.patient_id = patient.id
                 report.patient_ssn = patient.ssn
                 db.session.commit()
                 flash("Report has been updated successfully, note that the report has been set to" + patient.Fname + " " + patient.Lname + "with ssn" + patient.ssn, "success")
                 return redirect(url_for("update_report", report_id = report_id))
             else: #doctor updated ssn to a NON existing patient
-                print('44')
+                
                 report.patient_ssn = form.ssn.data
                 db.session.commit()
                 flash("Report has been updated successfully, note that you have set the patient is not registered, do you want to register the patient now?", 'registernow')
                 return redirect(url_for("update_report", report_id = report_id))
         else: #doctor didnt update ssn
-            print('55')
+            
             db.session.commit()
             flash("Report has been updated successfully", "success")
             return redirect(url_for("update_report", report_id = report_id))
@@ -450,5 +469,88 @@ def update_report(report_id):
     return render_template('update_report.html', form=form, legend='Update report', title = "Update report" )
 
 @app.route("/dashboard")
+@login_required(role = 'Admin')
+
 def dashboard():
+    
     return render_template("dashboard.html")
+
+
+###########################################
+
+
+@app.route("/shift/<int:doctor_id>", methods=['GET', 'POST'])
+@login_required(role = 'Admin')
+def shift(doctor_id):
+    doctor = Doctor.query.get_or_404(doctor_id)
+
+    if request.method == "POST":
+        
+        
+        
+        days_list = ""
+        isempty = list()
+        
+        for shift in request.form:
+            days_list += shift
+            days_list += "$"
+            isempty.append(shift)
+        
+        if not isempty:
+            flash("the doctor do not have working hours scheduled please update the doctors working hours", 'danger')
+            return redirect(url_for('home'))
+        else:
+            doctor.time_shift = days_list
+            db.session.commit()
+            flash('work shifts has been added to the doctor', 'success')
+            return redirect(url_for('home'))
+            
+
+    return render_template("work_shifts.html", doctor = doctor)
+    
+
+
+
+
+##################################################################
+@app.route("/shift_update/<int:doctor_id>", methods=['GET', 'POST'])
+@login_required(role = 'Admin')
+def update_shift(doctor_id):
+    doctor = Doctor.query.get_or_404(doctor_id)
+    if not doctor.time_shift:
+        return redirect(url_for('shift', doctor_id=doctor.id))
+    old = list()
+    if request.method == "GET":
+        old = doctor.time_shift.split('$')
+        
+    print(old)
+    if request.method == "POST":
+
+
+        days_list = ""
+        isempty = list()
+        for shift in request.form:
+            days_list += shift
+            days_list += "$"
+            isempty.append(shift)
+        doctor.time_shift = days_list
+        db.session.commit()
+        flash('work shifts has been updated', 'success')
+        return redirect(url_for('dtable'))
+    
+    return render_template("work_shifts_update.html", doctor = doctor, old = old)
+
+@app.route("/schedules")
+@login_required(role = 'Admin')
+def schedules():
+    doctors = Doctor.query.all()
+    doctor_shift_list = list()
+    for doctor in doctors:
+        doctor_shift = doctor.time_shift.split('$')
+        for i in doctor_shift:
+            doctor_shift_list.append((doctor, i))
+
+
+    
+    return render_template("schedules.html", doctor_shift_list=doctor_shift_list)
+    

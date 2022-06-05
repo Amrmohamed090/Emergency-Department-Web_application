@@ -3,7 +3,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, SubmitField, BooleanField, EmailField,IntegerField,DateField, RadioField, MultipleFileField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
 from emergencydebartment.models import Doctor, Patient
-import re   
+import re 
+import json
+
   
  
 
@@ -83,6 +85,7 @@ class ResetPasswordForm(FlaskForm):
     confirm_new_password = PasswordField('Confirm New Password',validators=[EqualTo('new_password')])
     submit = SubmitField('Change password')
 
+
     
 
 class PatientRegistrationForm(RegistrationForm):
@@ -91,8 +94,9 @@ class PatientRegistrationForm(RegistrationForm):
 class ReportForm(FlaskForm):
     ssn = StringField('Patient SSN')
     title = StringField('Basic condition', validators=[DataRequired()])
-    condition = TextAreaField('Condition', validators=[DataRequired()])
+    condition = TextAreaField('History of present illness', validators=[DataRequired()])
     urgency = RadioField('Urgency level', choices=["Level 1","Level 2", "Level 3", "Level 4"])
+    
     treatment = TextAreaField('Treatment given')
     recommendation = TextAreaField('Recommendation')
     images = MultipleFileField('Upload Files')

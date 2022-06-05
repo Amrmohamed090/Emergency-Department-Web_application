@@ -1,0 +1,243 @@
+{% extends "layout.html" %}
+{% block content %}
+       
+        <div class="content">
+                <div class="content-table dtable">
+
+
+                    <div class="scrollme">
+                        
+                        <table id="myTable" class="table table-bordered table-responsive" >
+                          <thead>
+                          <tr class="header">
+                            <td></td>
+                                   <th scope="col" >Saturday</th>
+                                    <th scope="col">Sunday</th>
+                                    <th scope="col">Monday</th>
+                                    
+                                    <th scope="col" >Tuesday</th>
+                                    <th scope="col" >Wednesday</th>
+                                    <th scope="col" >Thursday</th>
+                                    <th scope="col" >Friday</th>
+                                    
+                                    
+                                    
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                        
+                              <!--start first row-->
+                                <tr  class="header">
+                                  <th scope="row">Morning</th>
+                                   <td> {% for doctor, shift in doctor_shift_list %}
+                                     {% if shift == "Saturday-Morning" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                   </td>
+                                   <td> {% for doctor, shift in doctor_shift_list %}
+                                    {% if shift == "Sunday-Morning" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                  </td>
+                                  <td> {% for doctor, shift in doctor_shift_list %}
+                                    {% if shift == "Monday-Morning" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                  </td>
+                                  <td> {% for doctor, shift in doctor_shift_list %}
+                                    {% if shift == "Tuesday-Morning" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                  </td>
+                                  <td> {% for doctor, shift in doctor_shift_list %}
+                                    {% if shift == "Wednesday-Morning" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                  </td>
+                                  <td> {% for doctor, shift in doctor_shift_list %}
+                                    {% if shift == "Thursday-Morning" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                  </td>
+                                  <td> {% for doctor, shift in doctor_shift_list %}
+                                    {% if shift == "Friday-Morning" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                  </td>
+                                     
+                                   
+                                  
+                                   
+                                   
+
+
+                                  </tr>
+                                <!--end first row-->
+                                
+                                
+                                  <!--start second row-->
+                                <tr  class="header">
+                                  <th scope="row">Night</th>
+                                  <td> {% for doctor, shift in doctor_shift_list %}
+                                    {% if shift == "Saturday-Night" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                  </td>
+                                  <td> {% for doctor, shift in doctor_shift_list %}
+                                   {% if shift == "Sunday-Night" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                 </td>
+                                 <td> {% for doctor, shift in doctor_shift_list %}
+                                   {% if shift == "Monday-Night" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                 </td>
+                                 <td> {% for doctor, shift in doctor_shift_list %}
+                                   {% if shift == "Tuesday-Night" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                 </td>
+                                 <td> {% for doctor, shift in doctor_shift_list %}
+                                   {% if shift == "Wednesday-Night" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                 </td>
+                                 <td> {% for doctor, shift in doctor_shift_list %}
+                                   {% if shift == "Thursday-Night" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                 </td>
+                                 <td> {% for doctor, shift in doctor_shift_list %}
+                                   {% if shift == "Friday-Night" %}Dr.  {{doctor.Fname}}  {{doctor.Lname}}<br>{% endif %}{% endfor %}
+
+                                 </td>
+                                    
+                                     
+                                   
+                                  
+                                   
+                                   
+
+
+                                </tr>
+                              <!--end second row--> 
+                                
+                             
+                            </tbody>
+                            
+                        </table>
+                        <script>
+                            function nameF() {
+                              // Declare variables
+                              var input, filter, table, tr, td, i, txtValue;
+                              input = document.getElementById("nameInput");
+                              filter = input.value.toUpperCase();
+                              table = document.getElementById("myTable");
+                              tr = table.getElementsByTagName("tr");
+                            
+                              // Loop through all table rows, and hide those who don't match the search query
+                              for (i = 0; i < tr.length; i++) {
+                                td = tr[i].getElementsByTagName("td")[1];
+                                if (td) {
+                                  txtValue = td.textContent || td.innerText;
+                                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                  } else {
+                                    tr[i].style.display = "none";
+                                  }
+                                }
+                              }
+                            }
+                            function speciality() {
+                              // Declare variables
+                              var input, filter, table, tr, td, i, txtValue;
+                              input = document.getElementById("specialityInput");
+                              filter = input.value.toUpperCase();
+                              table = document.getElementById("myTable");
+                              tr = table.getElementsByTagName("tr");
+                            
+                              // Loop through all table rows, and hide those who don't match the search query
+                              for (i = 0; i < tr.length; i++) {
+                                td = tr[i].getElementsByTagName("td")[4];
+                                if (td) {
+                                  txtValue = td.textContent || td.innerText;
+                                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                  } else {
+                                    tr[i].style.display = "none";
+                                  }
+                                }
+                              }
+                            }
+                            function ssn() {
+                              // Declare variables
+                              var input, filter, table, tr, td, i, txtValue;
+                              input = document.getElementById("myInput");
+                              filter = input.value.toUpperCase();
+                              table = document.getElementById("myTable");
+                              tr = table.getElementsByTagName("tr");
+                            
+                              // Loop through all table rows, and hide those who don't match the search query
+                              for (i = 0; i < tr.length; i++) {
+                                td = tr[i].getElementsByTagName("td")[0];
+                                if (td) {
+                                  txtValue = td.textContent || td.innerText;
+                                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                  } else {
+                                    tr[i].style.display = "none";
+                                  }
+                                }
+                              }
+                            }
+                            </script>
+                    </div>
+
+                    <style>
+                      .button {
+                        display: inline-block;
+                        border-radius: 10px;
+                        background-color: #f66b0e;
+                        border: none;
+                        color: #FFFFFF;
+                        text-align: center;
+                        font-size: 99%;
+                        padding: 2%;
+                        min-width: 20%;
+                        width: 13%;
+                        transition: all 0.5s;
+                        cursor: pointer;
+                        margin-left: 41.5%;
+                          margin-bottom: 2%;
+                      }
+                      
+                      .button span {
+                        cursor: pointer;
+                        display: inline-block;
+                        position: relative;
+                        transition: 0.5s;
+                      }
+                      
+                      .button span:after {
+                        content: '\00bb';
+                        position: absolute;
+                        opacity: 0;
+                        top: 0;
+                        right: -20px;
+                        transition: 0.5s;
+                      }
+                      
+                      .button:hover span {
+                        padding-right: 25px;
+                      }
+                      
+                      .button:hover span:after {
+                        opacity: 1;
+                        right: 0;
+                      }
+                      </style>
+
+                    <a href="{{url_for('dtable')}}"><button type="submit" id="scheduals" class="button" style="vertical-align:middle"><span> To doctors table </span></button></a>
+                </div>
+                    </div>
+
+
+
+
+
+
+
+            </form>
+        </section>
+
+        {% endblock %}

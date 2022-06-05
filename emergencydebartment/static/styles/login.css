@@ -215,3 +215,12 @@ footer .mn li a{
   text-align: center;
   margin: auto;
 }
+
+#submit{
+  background: none;
+    border-radius: 15px;
+    border: solid 1px var(--blue-color);
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--blue-color);
+}

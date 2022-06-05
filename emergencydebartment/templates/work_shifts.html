@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible"content="IE=edge"/>
+    <meta name="viewport"content="width-device-width,initial-scale=1.0"/>
+    <!--    import google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300;1,400;1,500;1,900&display=swap" rel="stylesheet">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/all.min.css">
+    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
+    <!--    -->
+    <link rel="stylesheet" href="../static/styles/login.css">
+    <title>Doctor Schedule</title>
+</head>
+    <body>
+
+        <!--   navbar starts     -->
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
+                </a>
+                    <a href="{{ url_for('home') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
+                </div>
+            </div>
+        </nav>
+        <!--   navbar end     -->
+
+        <div class="col-md-6 alertclass">
+            {% with messages = get_flashed_messages(with_categories = true) %} {% if
+            messages %} {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %} {% endif%} {% endwith %}
+          </div>
+     <!--start section -->  
+
+
+     <section id="login" class="login">
+        <div class="card text-center">
+            <div class="card-header" style="border: none;">
+                <img src="../static/images/E.svg.png">
+                <h4 class="text-uppercase">Scedule doctor work shift</h4>
+                <p style="color: white; font-size: 13px;">Please complete this form</p>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" name="days">
+                            
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-6">
+                                        <div class="mb-3">
+                                            
+                                            <div>
+                                                        <input type="checkbox"  id="Saturday-Morning" name="Saturday-Morning" value=1>
+                                                        <label for="Saturday-Morning">Saturday - Morning<label>
+                                                        </div>
+                                                
+                                                    <div>
+                                                        <input type="checkbox" id="Sunday-Morning" name="Sunday-Morning" value=3>
+                                                        <label for="Sunday-Morning">Sunday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Monday-Morning" name="Monday-Morning" value=5>
+                                                        <label for="Monday-Morning">Monday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Tuesday-Morning" name="Tuesday-Morning" value=7>
+                                                        <label for="Tuesday-Morning">Tuesday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Wednesday-Morning" name="Wednesday-Morning" value=9>
+                                                        <label for="Wednesday-Morning">Wednesday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Thursday-Morning" name="Thursday-Morning" value=11>
+                                                        <label for="Thursday-Morning">Thursday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Friday-Morning" name="Friday-Morning" value=13>
+                                                        <label for="Friday-Morning">Friday - Morning</label>
+                                                    </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4 col-lg-6">
+                                        <div class="mb-3">
+                                            
+                                                    <div>
+                                                        <input type="checkbox" id="Daturday-Night" name="Daturday-Night" value=2>
+                                                        <label for="Daturday-Night">Saturday - Night</label>
+                                                    </div>
+                                                
+                                                    <div>
+                                                        <input type="checkbox" id="Sunday-Night" name="Sunday-Night" value=4>
+                                                        <label for="Sunday-Night">Sunday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Monday-Night" name="Monday-Night" value=6>
+                                                        <label for="Monday-Night">Monday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Tuesday-Night" name="Tuesday-Night" value=8>
+                                                        <label for="Tuesday-Night">Tuesday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Wednesday-Night" name="Wednesday-Night" value=10>
+                                                        <label for="Wednesday-Night">Wednesday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Thursday-Night" name="Thursday-Night" value=12>
+                                                        <label for="Thursday-Night">Thursday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Friday-Night" name="Friday-Night" value=14>
+                                                        <label for="Friday-Night">Friday-Night</label>
+                                                    </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            
+
+                                            
+                            <button type="submit" class="btn btn-primary text-uppercase">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted" style="border: none;">
+                <img src="../static/images/Cairo_University_Crest.png" style="width: 20px;">
+                <img src="../static/images/v1-removebg-preview.png" style="width: 27px;">
+            </div>
+        </div>
+    </section>
+
+
+
+        <section class="foot">
+            <footer style="margin-bottom:-201px;">
+                <ul class="social_icon">
+                    <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+                </ul>
+                <p style="font-size: 15px; color: var(--gray-color)">&copy; Database course Team 19</p>
+            </footer>
+        </section>
+
+        <script src="../static/script/bootstrap.bundle.min.js"></script>
+        <script src="../static/script/all.min.js"></script>
+    </body>
+</html>

@@ -1,36 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible"content="IE=edge"/>
-    <meta name="viewport"content="width-device-width,initial-scale=1.0"/>
-    <!--    import google fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,300;1,400;1,500;1,900&display=swap" rel="stylesheet">
-    <!--    -->
-    <link rel="stylesheet" href="../static/styles/all.min.css">
-    <link rel="stylesheet" href="../static/styles/bootstrap.min.css">
-    <!--    -->
-    <link rel="stylesheet" href="../static/styles/login.css">
-    <link rel="stylesheet" href="../static/styles/table.css">
-    <link rel="stylesheet" href="../static/styles/style.css">
-    <link rel="stylesheet" href="../static/styles/galary.css">
-    <link rel="stylesheet" href="../static/styles/box.css">
-    <title>profile</title>
-</head>
-    <body>
-
-        <!--   navbar starts     -->
-        <nav class="navbar navbar-expand-lg sticky-top">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url_for('home') }}">
-                    <img src="../static/images/Emergency_(NGO)_logo.svg.png" alt="Emergency" height="50 px">
-                </a>
-                    <a href="{{ url_for('home') }}" class="log-out btn btn-primary rounded-pill main-btn ms-1"><i class="fa-solid fa-house"></i></a>
-                </div>
-            </div>
-        </nav>
+{% extends "layout.html" %}
+{% block content %}
         <!--   navbar end     -->
         <!--   info     -->
         <section class="services pt-5 pb-5">
@@ -101,7 +70,8 @@
                                     {% endif %}
                                         
                                     </td>
-                                    <td><a href="{{ url_for('report' , report_id = report.id)}}" class="stretched-link"> Open</a></td>
+                                    
+                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{ url_for('report' , report_id = report.id)}} "> <i class="fa-solid fa-paste"></i> open report</a></a></td>
 
                             </tr>
                             
@@ -117,19 +87,4 @@
         <!--end reportbox-->
         
         
-
-
-        <section class="foot" style="margin-top: 59px;">
-            <footer>
-                <ul class="social_icon">
-                    <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
-                </ul>
-                <p style="font-size: 15px; color: var(--gray-color)">&copy; Database course Team 19</p>
-            </footer>
-        </section>
-
-        <script src="../static/script/bootstrap.bundle.min.js"></script>
-        <script src="../static/script/all.min.js"></script>
-        <script src="../static/script/gallery.js"></script>
-    </body>
-</html>
+{% endblock %}

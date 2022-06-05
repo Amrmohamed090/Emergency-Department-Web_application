@@ -2,139 +2,182 @@
 <!--   Landing Section starts     -->
 <section
   id="landing"
-  class="landing d-flex justify-content-center align-items-center"
->
-  {% if current_user.is_anonymous or current_user.user_role == 'Patient' %}
-  <div class="text-center">
-    <img class="E-logo mb-2" src="../static/images/E.svg.png" width="100px" />
-    <h1><i>Clinical Emergency services</i></h1>
-    <p class="mb-2"><i>For Emergency Conditions</i></p>
-    <a class="calling_btn btn rounded-pill main-btn" href="tel:+201015134314"
-      ><i class="fa-solid fa-phone"></i> Call</a
-    >
-  </div>
-  {% elif current_user.user_role == 'Doctor'%}
+  class="landing d-flex justify-content-center align-items-center">
+
+  <div class = 'container '>
+  <div class = 'row '>
+
+    
+    {% if current_user.is_anonymous or current_user.user_role == 'Patient' %}
+    
+
+      <div class="text-center">
+        <img class="E-logo mb-2" src="../static/images/E.svg.png" width="100px" />
+        <h1><i>Clinical Emergency services</i></h1>
+        <p class="mb-2"><i>For Emergency Conditions</i></p>
+        <a class="calling_btn btn rounded-pill main-btn" href="tel:+201015134314">
+          <i class="fa-solid fa-phone"></i> Call</a>
+      </div>
+    </div>
+    {% elif current_user.user_role == 'Doctor'%}
+    <div class="col-md-6" >
 
       <div class="text-center">
         <img
-          class="E-logo mb-2"
-          src="../static/images/addac2.png"
-          width="100px"
+        class="E-logo mb-2"
+        src="../static/images/addac2.png"
+        width="100px"
         />
         <h1><i>Add Patient</i></h1>
         <p class="mb-2"><i>Register a new patient</i></p>
         <a
-          class="calling_btn btn rounded-pill main-btn"
-          href="{{ url_for('registerP') }}"
-          ><i class="fa-solid fa-user"></i> Register</a
-        >
+        class="calling_btn btn rounded-pill main-btn"
+        href="{{ url_for('registerP') }}" style="margin:10px ;"
+        ><i class="fa-solid fa-user"></i> Register</a>
       </div>
+    </div>
+  
+    <div class="col-md-6">
 
       <div class="text-center">
         <img
-          class="E-logo mb-2"
-          src="../static/images/newreport.png"
-          width="100px"
+        class="E-logo mb-2"
+        src="../static/images/newreport.png"
+        width="100px"
         />
         <h1><i>Create</i></h1>
         <p class="mb-2"><i>Create new report</i></p>
         <a
-          class="calling_btn btn rounded-pill main-btn"
-
-          href="{{ url_for('new_report') }}"
-
-          ><i class="fa-solid fa-plus"></i> Create   </a
+        class="calling_btn btn rounded-pill main-btn"
+        
+        href="{{ url_for('new_report') }}"  style="margin:10px ;"
+        
+        ><i class="fa-solid fa-plus"></i> Create   </a
         >
       </div>
+    </div>
+      
+    <div class="col-md-6">
 
+      <div class="text-center">
+        <img class="E-logo mb-2" src="../static/images/search2.png" width="100px" />
+        <h1><i>Search</i></h1>
+        <p class="mb-2"><i>Search for report</i></p>
+        <a
+        class="calling_btn btn rounded-pill main-btn"
+        href="{{ url_for('search_patient_main') }}"  style="margin:10px ;"
+        ><i class="fa-solid fa-search"></i> search</a
+        >
+      </div>
+    </div>
 
-  <div class="text-center">
-    <img class="E-logo mb-2" src="../static/images/search2.png" width="100px" />
-    <h1><i>Search</i></h1>
-    <p class="mb-2"><i>Search for report</i></p>
-    <a
-      class="calling_btn btn rounded-pill main-btn"
-      href="{{ url_for('search_patient_main') }}"
-      ><i class="fa-solid fa-search"></i> search</a
-    >
-  </div>
-  <div class="text-center">
-    <img
-      class="E-logo mb-2"
-      src="../static/images/patients2.png"
-      width="100px"
-    />
-    <h1><i>Patients Table</i></h1>
-    <p class="mb-2"><i>Search for a patients</i></p>
-    <a
-      class="calling_btn btn rounded-pill main-btn"
-      href="{{ url_for('ptable') }}"
-      ><i class="fa-solid fa-search"></i> Search</a
-    >
-  </div>
-  
+      <div class="col-md-6">
+      <div class="text-center">
+        <img
+        class="E-logo mb-2"
+        src="../static/images/patients2.png"
+        width="100px"
+        />
+        <h1><i>Patients Table</i></h1>
+        <p class="mb-2"><i>Search for a patients</i></p>
+        <a
+        class="calling_btn btn rounded-pill main-btn"
+        href="{{ url_for('ptable') }}"  style="margin:10px ;"
+        ><i class="fa-solid fa-search"></i> Search</a
+        >
+      </div>
+    </div>  
+      
   {% elif current_user.user_role == 'Admin'%}
+  <div class="col-md-6" >
+
+    <div class="text-center">
+      <img
+      class="E-logo mb-2"
+      src="../static/images/addac2.png"
+      width="100px"
+      />
+      <h1><i>Add Patient</i></h1>
+      <p class="mb-2"><i>Register a new patient</i></p>
+      <a
+      class="calling_btn btn rounded-pill main-btn"
+      href="{{ url_for('registerP') }}" style="margin:10px ;"
+      ><i class="fa-solid fa-user"></i> Register</a>
+    </div>
+  </div>
+
+
+  <div class="col-md-6">
   <div class="text-center">
     <img
-      class="E-logo mb-2"
-      src="../static/images/patients2.png"
-      width="100px"
+    class="E-logo mb-2"
+    src="../static/images/patients2.png"
+    width="100px"
     />
     <h1><i>Patients Table</i></h1>
     <p class="mb-2"><i>Patients Table</i></p>
     <a
-      class="calling_btn btn rounded-pill main-btn"
-      href="{{ url_for('ptable') }}"
-      ><i class="fa-solid fa-user"></i> patients</a
+    class="calling_btn btn rounded-pill main-btn"
+    href="{{ url_for('ptable') }}"
+    ><i class="fa-solid fa-user"></i> patients</a
     >
   </div>
-
+</div>
+<div class="col-md-6">
   <div class="text-center">
     <img
-      class="E-logo mb-2"
-      src="../static/images/patients2.png"
-      width="100px"
+    class="E-logo mb-2"
+    src="../static/images/patients2.png"
+    width="100px"
     />
     <h1><i>Doctors Table</i></h1>
     <p class="mb-2"><i>Doctors Table</i></p>
     <a
-      class="calling_btn btn rounded-pill main-btn"
-      href="{{ url_for('dtable') }}"
-      ><i class="fa-solid fa-user"></i> Doctors</a
-    >
+    class="calling_btn btn rounded-pill main-btn"
+    href="{{ url_for('dtable') }}"
+    ><i class="fa-solid fa-user"></i> Doctors</a>
   </div>
-
+</div>
+  
+<div class="col-md-6" >
 
   <div class="text-center">
-    <img class="E-logo mb-2" src="../static/images/search2.png" width="100px" />
-    <h1><i>Search</i></h1>
-    <p class="mb-2"><i>Search for patient or report</i></p>
+    <img
+    class="E-logo mb-2"
+    src="../static/images/doc.png"
+    width="100px"
+    />
+    <h1><i>Add doctor</i></h1>
+    <p class="mb-2"><i>Register a new doctor</i></p>
     <a
-      class="calling_btn btn rounded-pill main-btn"
-      href="{{ url_for('search_patient_main') }}"
-      ><i class="fa-solid fa-search"></i> search</a
-    >
+    class="calling_btn btn rounded-pill main-btn"
+    href="{{ url_for('registerD') }}" style="margin:10px ;"
+    ><i class="fa-solid fa-user"></i> Register</a>
   </div>
-
-
+</div>
+  
+  
   {% endif %}
+</div>
+</div>
 </section>
 <!--   Landing Section ends     -->
-<!--  services section starts      -->
+<!--  services section starts for non admin     -->
+{% if current_user.user_role != 'Admin' %}
 <section
-  id="services"
-  class="services d-flex justify-content-center align-items-center"
+id="services"
+class="services d-flex justify-content-center align-items-center"
 >
-  <div class="srv card">
-    <div class="card-body">
-      <div class="main-title text-center mt-5 mb-5 position-relative">
-        <h1 class="serv-icon mb-0" style="color: var(--blue-color)">
-          <i class="fa-solid fa-hand-holding-hand"></i>
-        </h1>
-        <p class="title">Services</p>
-      </div>
-      <div class="container">
-        <div class="row">
+<div class="srv card">
+  <div class="card-body">
+    <div class="main-title text-center mt-5 mb-5 position-relative">
+      <h1 class="serv-icon mb-0" style="color: var(--blue-color)">
+        <i class="fa-solid fa-hand-holding-hand"></i>
+      </h1>
+      <p class="title">Services</p>
+    </div>
+    <div class="container">
+      <div class="row">
           <div class="col-md-4" style="margin-bottom: 15px">
             <div class="card w-auto">
               <div class="card-body text-center">
@@ -256,7 +299,132 @@
     </div>
   </div>
 </section>
+{% endif %}
+<!--  services section ends    -->
+<!--  services section starts FOR ADMIN  -->
+{% if current_user.user_role == 'Admin' %}
+<section
+id="services"
+class="services d-flex justify-content-center align-items-center"
+>
+<div class="srv card">
+  <div class="card-body">
+    <div class="main-title text-center mt-5 mb-5 position-relative">
+      <h1 class="serv-icon mb-0" style="color: var(--blue-color)">
+        <i class="fa-solid fa-hand-holding-hand"></i>
+      </h1>
+      
+    </div>
+    <div class="container">
+      <div class="row">
+          <div class="col-md-4" style="margin-bottom: 15px">
+            <div class="card w-auto">
+              <div class="card-body text-center">
+
+
+                
+                <!--  Here  -->
+                
+              <i
+                  class="fa fa-chart-pie fa-3x i"
+                  style="color: var(--orange-color); font-size: 100px"
+                ></i>
+                <h4
+                  class="mb-3 mt-3 text-uppercase"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 20px;
+                    text-shadow: rgba(0, 0, 0, 0.3) 10px 10px 5px;
+                    font-weight: bolder;
+                  "
+                >
+                <i class="span" style="margin-top:13% ;">Total Doctors</i>
+                </h4>
+                <i class="p-2 p-sm-1"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 30px;
+                    font-weight: bolder;
+                  "
+                > {{number_of_doctors}}</i>
+              
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom: 15px">
+            <div class="card w-auto">
+              <div class="card-body text-center">
+
+                <!--HERE 2-->
+                <i
+                  class="fa fa-chart-pie fa-3x i"
+                  style="color: var(--orange-color); font-size: 100px"
+                ></i>
+                <h4
+                  class="mb-3 mt-3 text-uppercase"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 20px;
+                    text-shadow: rgba(0, 0, 0, 0.3) 10px 10px 5px;
+                    font-weight: bolder;
+                  "
+                >
+                <i class="span" style="margin-top:13% ;">Total Patients</i>
+                </h4>
+                <i class="p-2 p-sm-1"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 30px;
+                    font-weight: bolder;
+                  "
+                > {{number_of_patients}}</i>
+              
+              
+              
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom: 15px">
+            <div class="card w-auto">
+              <div class="card-body text-center">
+                <!--HERE 3-->
+
+                <i
+                  class="fa fa-chart-pie fa-3x i"
+                  style="color: var(--orange-color); font-size: 100px"
+                ></i>
+                <h4
+                  class="mb-3 mt-3 text-uppercase"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 20px;
+                    text-shadow: rgba(0, 0, 0, 0.3) 10px 10px 5px;
+                    font-weight: bolder;
+                  "
+                >
+                <i class="span" style="margin-top:13% ;">Total Reports</i>
+                </h4>
+                <i class="p-2 p-sm-1"
+                  style="
+                    color: var(--blue-color);
+                    font-size: 30px;
+                    font-weight: bolder;
+                  "
+                > {{number_of_reports}}</i>
+              
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
 <!--  services section ends      -->
+
+
 <!--  about section starts      -->
 <section
   id="about"
@@ -327,6 +495,7 @@
 </section>
 
 <!--  about section ends      -->
+
 
 <section id="team" class="team d-flex justify-content-center align-items-center">
   <div class="tm card">

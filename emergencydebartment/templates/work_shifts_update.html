@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+{% block content %}
+     <!--start section -->  
+
+
+     <section id="login" class="login">
+        <div class="card text-center">
+            <div class="card-header" style="border: none;">
+                <img src="../static/images/E.svg.png">
+                <h4 class="text-uppercase">Scedule doctor work shift</h4>
+                <p style="color: white; font-size: 13px;">Please complete this form</p>
+            </div>
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" name="days">
+                            
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-6">
+                                        <div class="mb-3">
+                                            
+                                            <div>
+                                                        
+                                                        <input type="checkbox"  id="Saturday-Morning" name="Saturday-Morning" value=1 {% if 'Saturday-Morning' in old %} checked {% endif %} >
+                                                        <label for="Saturday-Morning">Saturday - Morning<label>
+                                                        </div>
+                                                
+                                                    <div>
+                                                        <input type="checkbox" id="Sunday-Morning" name="Sunday-Morning" value=3 {% if 'Sunday-Morning' in old %} checked {% endif %}>
+                                                        <label for="Sunday-Morning">Sunday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Monday-Morning" name="Monday-Morning" value=5 {% if 'Monday-Morning' in old %} checked {% endif %}>
+                                                        <label for="Monday-Morning">Monday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Tuesday-Morning" name="Tuesday-Morning" value=7 {% if 'Tuesday-Morning' in old %} checked {% endif %}>
+                                                        <label for="Tuesday-Morning">Tuesday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Wednesday-Morning" name="Wednesday-Morning" value=9 {% if 'Wednesday-Morning' in old %} checked {% endif %}>
+                                                        <label for="Wednesday-Morning">Wednesday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Thursday-Morning" name="Thursday-Morning" value=11 {% if 'Thursday-Morning' in old %} checked {% endif %}>
+                                                        <label for="Thursday-Morning">Thursday - Morning</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Friday-Morning" name="Friday-Morning" value=13 {% if 'Friday-Morning' in old %} checked {% endif %}>
+                                                        <label for="Friday-Morning">Friday - Morning</label>
+                                                    </div>
+                                        </div>
+                                    </div>
+                                    
+
+
+                                    <div class="col-md-4 col-lg-6">
+                                        <div class="mb-3">
+                                            
+                                                    <div>
+                                                        <input type="checkbox" id="Daturday-Night" name="Daturday-Night" value=2 {% if 'Daturday-Night' in old %} checked {% endif %}>
+                                                        <label for="Daturday-Night">Saturday - Night</label>
+                                                    </div>
+                                                
+                                                    <div>
+                                                        <input type="checkbox" id="Sunday-Night" name="Sunday-Night" value=4 {% if 'Sunday-Night' in old %} checked {% endif %}>
+                                                        <label for="Sunday-Night">Sunday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Monday-Night" name="Monday-Night" value=6 {% if 'Monday-Night' in old %} checked {% endif %}>
+                                                        <label for="Monday-Night">Monday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Tuesday-Night" name="Tuesday-Night" value=8 {% if 'Tuesday-Night' in old %} checked {% endif %}>
+                                                        <label for="Tuesday-Night">Tuesday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Wednesday-Night" name="Wednesday-Night" value=10 {% if 'Wednesday-Night' in old %} checked {% endif %}>
+                                                        <label for="Wednesday-Night">Wednesday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Thursday-Night" name="Thursday-Night" value=12 {% if 'Thursday-Night' in old %} checked {% endif %}>
+                                                        <label for="Thursday-Night">Thursday - Night</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" id="Friday-Night" name="Friday-Night" value=14 {% if 'Friday-Night' in old %} checked {% endif %}>
+                                                        <label for="Friday-Night">Friday-Night</label>
+                                                    </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                                            
+                            <button type="submit" class="btn btn-primary text-uppercase">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted" style="border: none;">
+                <img src="../static/images/Cairo_University_Crest.png" style="width: 20px;">
+                <img src="../static/images/v1-removebg-preview.png" style="width: 27px;">
+            </div>
+        </div>
+    </section>
+
+
+
+      
+{% endblock %}

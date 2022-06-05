@@ -32,6 +32,7 @@ class Doctor(User):
     salary = db.Column(db.Integer, nullable=False)
     speciallity = db.Column(db.String(80),nullable=False)
     image_file = db.Column(db.String(20),nullable = False, default='default.jpg')
+    time_shift = db.Column(db.String(50))
     
     email = db.Column(db.String(20),unique=True,nullable=False)
     examination = db.relationship('Report',  backref='doctor', lazy=True, foreign_keys = 'Report.doctor_id')
@@ -41,13 +42,14 @@ class Doctor(User):
 class Patient(User):
     id = db.Column(db.Integer, db.ForeignKey('user_table.id'),primary_key=True)
     date =  db.Column(db.DateTime, default = datetime.utcnow) #date of registeration
-    report = db.relationship('Report',  backref='patient', lazy=True, foreign_keys = 'Report.patient_id')
     
+    report = db.relationship('Report',  backref='patient', lazy=True, foreign_keys = 'Report.patient_id')
     email = db.Column(db.String(20),unique=True)
     
     
     def __repr__(self):
         return f"Patient('{self.Fname}','{self.Lname}')"
+
 
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -56,7 +58,7 @@ class Report(db.Model):
     patient_ssn = db.Column(db.Integer,nullable=False, default=99999999999999)
     date =  db.Column(db.DateTime, default = datetime.utcnow)
     title = db.Column(db.String(50),nullable = False )
-    condition = db.Column(db.String(100))
+    condition = db.Column(db.String(300))
     urgency = db.Column(db.String(7))
     treatment = db.Column(db.String(100))
     recommendation = db.Column(db.String(100))
