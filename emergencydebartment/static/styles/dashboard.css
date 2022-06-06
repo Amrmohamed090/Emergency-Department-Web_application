@@ -43,12 +43,7 @@
     display: inline-block;
 }
 
-.dtable{
-    position: relative;
-    bottom: 40%;
-    left: 120px;
-    width: 90%;
-}
+
 .dtable tr:hover{
     background-color:rgba(250, 250, 250, 0.5);
 }
