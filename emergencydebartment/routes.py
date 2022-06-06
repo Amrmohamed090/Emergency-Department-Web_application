@@ -559,9 +559,10 @@ def schedules():
     doctors = Doctor.query.all()
     doctor_shift_list = list()
     for doctor in doctors:
-        doctor_shift = doctor.time_shift.split('$')
-        for i in doctor_shift:
-            doctor_shift_list.append((doctor, i))
+        if doctor.time_shift:
+            doctor_shift = doctor.time_shift.split('$')
+            for i in doctor_shift:
+                doctor_shift_list.append((doctor, i))
 
 
     
