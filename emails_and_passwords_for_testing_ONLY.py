@@ -1,6 +1,6 @@
 from turtle import title
 from emergencydebartment import db
-from emergencydebartment.models import Doctor, Patient, User , Report, Images
+from emergencydebartment.models import Doctor, Patient, User , Report, Images , Message
 from flask_bcrypt import Bcrypt
 from datetime import datetime
 

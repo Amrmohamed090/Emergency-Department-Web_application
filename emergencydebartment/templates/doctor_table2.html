@@ -17,28 +17,25 @@
                             <thead>
                                 <tr class="header">
                                     
-                                    <th scope="col">SSN</th>
+                                    
                                     <th scope="col">Name</th>
                                     
-                                    <th scope="col" >Data of birth</th>
-                                    <th scope="col" >Gender</th>
+                                    
+                                    
                                     <th scope="col" >speciality</th>
                                     <th scope="col" >phone</th>
-                                    <th scope="col" >Hiring date</th>
-                                    <th scope="col" >Number of reports</th>
-                                    <th scope="col" >Schedule Shifts</th>
-                                    <th scope="col" >Profile</th>
+                                    
                                     <th scope="col" >Message</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
                                 
-                        {% for doctor, number_of_reports in table %}
+                        {% for doctor in table %}
                             
                                 <tr class='clickable-row' data-href="{{ url_for('profile', doctor_id=doctor.id) }}">
                                     
-                                    <td>{{doctor.ssn}}</td>
+                                    
                                     
                                     {% if doctor.Sname %}
                                     <td>{{doctor.Fname}}  {{doctor.Sname}}  {{doctor.Lname}}</td>
@@ -46,15 +43,15 @@
                                     <td>{{doctor.Fname}}  {{doctor.Lname}}</td>
                                     {% endif %}
                                     
-                                    <td>{{doctor.birth_date.strftime('%Y-%m-%d')}}</td>
-                                    <td>{{doctor.gender}}</td>
+                                   
+                                    
                                     <td>{{doctor.speciallity}}</td>
                                     <td>{{doctor.phone}}</td>
-                                    <td>{{doctor.hiring_date.strftime('%Y-%m-%d')}}</td>
-                                    <td>{{number_of_reports}}</td>
-                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('update_shift',doctor_id=doctor.id)}} "> <i class="fa-solid fa-paste"></i> Schedule</a></a></td>
-                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('profile',doctor_id=doctor.id)}} "> <i class="fa-solid fa-user"></i> Profile</a></a></td>
+                                    
+                                    
+                                    
                                     <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('send_message',receive_id=doctor.id)}} "> <i class="fa-solid fa-message"></i> Message</a></a></td>
+
                                 
                                 {% endfor %}
                             </tbody>
@@ -170,7 +167,7 @@
                         }
                         </style>
 
-<a href="{{url_for('schedules')}}"><button  id="scheduals" class="button" style="vertical-align:middle" ><span> To Schedules </span></button></a>
+
                 </div>
                     </div>
 

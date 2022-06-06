@@ -1,12 +1,13 @@
 
 import email
+from email import message
 from turtle import title
 from flask import  render_template, request, url_for ,flash, redirect, session, abort
 import secrets
 from emergencydebartment import app, db, bcrypt, login_manager
 from emergencydebartment import form
-from emergencydebartment.form import LoginForm , DoctorRegistrationForm, PatientRegistrationForm, ReportForm, ResetPasswordForm
-from emergencydebartment.models import Doctor, Patient, Report, Images
+from emergencydebartment.form import LoginForm , DoctorRegistrationForm, PatientRegistrationForm, ReportForm, ResetPasswordForm, MessageForm
+from emergencydebartment.models import Doctor, Patient, Report, Images, Message
 from flask_login import login_user, current_user , logout_user, login_required
 from functools import wraps
 import os
@@ -38,11 +39,23 @@ def login_required(role="ANY"):
 @app.route("/")
 @app.route("/home")
 def home():
+    if not current_user.is_anonymous:
+        if current_user.user_role == "Admin":
 
-    number_of_doctors = len(Doctor.query.all())
-    number_of_patients  = len(Patient.query.all())
-    number_of_reports = len(Report.query.all())
-    return render_template('index.html', number_of_doctors=number_of_doctors, number_of_patients=number_of_patients, number_of_reports=number_of_reports)
+            number_of_doctors = len(Doctor.query.all())
+            number_of_patients  = len(Patient.query.all())
+            number_of_reports = len(Report.query.all())
+            return render_template('index.html', number_of_doctors=number_of_doctors, number_of_patients=number_of_patients, number_of_reports=number_of_reports)
+        elif current_user.user_role == "Doctor":
+
+            number_of_doctors = len(Doctor.query.all())
+            number_of_patients  = len(Patient.query.all())
+            number_of_reports = len(Report.query.all())
+            return render_template('index.html', number_of_doctors=number_of_doctors, number_of_patients=number_of_patients, number_of_reports=number_of_reports)
+        else: return render_template('index.html')
+    else :
+         return render_template('index.html')
+    
 ##############################################
 
 #REGISTER DOCTOR
@@ -553,4 +566,43 @@ def schedules():
 
     
     return render_template("schedules.html", doctor_shift_list=doctor_shift_list)
+
+
+@app.route("/send_message/<int:receive_id>", methods=['GET', 'POST'])
+@login_required(role = 'Doctor')
+def send_message(receive_id):
+    form = MessageForm()
+    doctor_name = Doctor.query.get_or_404(receive_id).Fname
+
+    if form.validate_on_submit():
+        message = Message(title = form.title.data, message=form.message.data, sender_id = current_user.id, receiver_id = receive_id)
+        db.session.add(message)
+        db.session.commit()
+        flash("your Message has been sent to Dr." + doctor_name, "success")
+        return redirect(url_for("home"))
+
+
     
+    return render_template("send_message.html", form=form, doctor_name= doctor_name)
+##################################################################
+#TABLE OF DOCTORS
+@app.route("/doctors_table1", methods= ['GET','POST'])
+@login_required(role = 'Doctor')
+def doctor_table():
+    
+    table = Doctor.query.all()
+    return render_template('doctor_table2.html', table = table)
+
+@app.route("/inbox/<int:doctor_id>", methods= ['GET','POST'])
+@login_required(role = 'Doctor')
+def inbox(doctor_id):
+    if current_user.id != doctor_id:
+        abort(403)
+    messages = Doctor.query.get_or_404(doctor_id).Inbox
+    sender_list = list()
+    for message in messages:
+        sender = Doctor.query.get(message.sender_id)
+        sender_list.append(sender)
+    
+        
+    return render_template('inbox.html', messages_senders_list = list(zip(messages,sender_list)))

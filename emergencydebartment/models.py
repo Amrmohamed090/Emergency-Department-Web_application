@@ -36,6 +36,7 @@ class Doctor(User):
     
     email = db.Column(db.String(20),unique=True,nullable=False)
     examination = db.relationship('Report',  backref='doctor', lazy=True, foreign_keys = 'Report.doctor_id')
+    Inbox = db.relationship('Message',  backref='doctor', lazy=True, foreign_keys = 'Message.receiver_id')
     def __repr__(self):
         return f"Doctor('{self.Fname}','{self.Lname}')"
 
@@ -74,3 +75,10 @@ class Images(db.Model):
     def __repr__(self):
 
         return f"image('{self.image}')"
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50),nullable = False )
+    message = db.Column(db.String(50),nullable = False )
+    sender_id = db.Column(db.Integer, db.ForeignKey('doctor.id'),nullable = False)
+    receiver_id = db.Column(db.Integer, db.ForeignKey('doctor.id'),nullable = False)

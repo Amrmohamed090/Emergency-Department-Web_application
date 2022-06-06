@@ -64,6 +64,9 @@
             <li class="nav-item">
               <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerD') }}">Register new doctor</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('inbox', doctor_id = current_user.id) }}">Inbox</a>
+            </li>
            
            
     
@@ -74,6 +77,12 @@
           </li>
             <li class="nav-item">
               <a class="nav-link p-2 p-lg-3" href="{{ url_for('registerP') }}">Register new Patient</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('doctor_table') }}">Doctors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link p-2 p-lg-3" href="{{ url_for('inbox', doctor_id = current_user.id) }}">Inbox</a>
             </li>
             
             

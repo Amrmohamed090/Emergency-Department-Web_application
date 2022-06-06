@@ -1,44 +1,46 @@
 {% extends "layout.html" %}
 {% block content %}
-<legend class="border-bottom mb-4 legend align-text-center">Doctors Table</legend>
-        <div class="content">
+
+
+
+<legend class="border-bottom mb-4 legend align-text-center">Inbox</legend>
+
+  {% if not messages_senders_list %}
+  <div class="col-md-6 alertclass">
+  <div class="alert alert-danger">you dont have any messages</div></div>
+  {% else %}
+
+        <div class="content" >
                 <div class="content-table dtable">
 
 
                     <div class="scrollme">
-                        <div class="row justify-content-center" >
-                        <input type="text" id="nameInput" onkeyup="nameF()" style="margin: 1vh;" placeholder="Search for names..">
-                    </div>
-                        <div class="row justify-content-center" >
-                            <input type="text" id="specialityInput" onkeyup="speciality()" placeholder="Search for Department..">
-                            <input type="text" id="myInput" onkeyup="ssn()" placeholder="Search for SSN..">
-                        </div>
+                        
                         <table id="myTable" class="table table-bordered table-responsive" >
                             <thead>
                                 <tr class="header">
                                     
-                                    <th scope="col">SSN</th>
+                                    
                                     <th scope="col">Name</th>
                                     
-                                    <th scope="col" >Data of birth</th>
-                                    <th scope="col" >Gender</th>
-                                    <th scope="col" >speciality</th>
-                                    <th scope="col" >phone</th>
-                                    <th scope="col" >Hiring date</th>
-                                    <th scope="col" >Number of reports</th>
-                                    <th scope="col" >Schedule Shifts</th>
-                                    <th scope="col" >Profile</th>
+                                    
+                                    
+                                    <th scope="col" >Speciality</th>
+                                    <th scope="col" >Phone</th>
+                                    <th scope="col" >Title</th>
+                                    
                                     <th scope="col" >Message</th>
+                                    <th scope="col" >Reply</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
                                 
-                        {% for doctor, number_of_reports in table %}
+                        {% for message, doctor in messages_senders_list %}
                             
                                 <tr class='clickable-row' data-href="{{ url_for('profile', doctor_id=doctor.id) }}">
                                     
-                                    <td>{{doctor.ssn}}</td>
+                                    
                                     
                                     {% if doctor.Sname %}
                                     <td>{{doctor.Fname}}  {{doctor.Sname}}  {{doctor.Lname}}</td>
@@ -46,20 +48,24 @@
                                     <td>{{doctor.Fname}}  {{doctor.Lname}}</td>
                                     {% endif %}
                                     
-                                    <td>{{doctor.birth_date.strftime('%Y-%m-%d')}}</td>
-                                    <td>{{doctor.gender}}</td>
+                                   
+                                    
                                     <td>{{doctor.speciallity}}</td>
                                     <td>{{doctor.phone}}</td>
-                                    <td>{{doctor.hiring_date.strftime('%Y-%m-%d')}}</td>
-                                    <td>{{number_of_reports}}</td>
-                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('update_shift',doctor_id=doctor.id)}} "> <i class="fa-solid fa-paste"></i> Schedule</a></a></td>
-                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('profile',doctor_id=doctor.id)}} "> <i class="fa-solid fa-user"></i> Profile</a></a></td>
-                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('send_message',receive_id=doctor.id)}} "> <i class="fa-solid fa-message"></i> Message</a></a></td>
+                                    <td>{{message.title}}</td>
+                                    <td>{{message.message}}</td>
+                                    
+                                    
+                                    
+                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{url_for('send_message',receive_id=doctor.id)}} "> <i class="fa-solid fa-message"></i> Reply</a></a></td>
+
                                 
                                 {% endfor %}
                             </tbody>
                             
                         </table>
+
+                        {% endif %}
                         <script>
                             function nameF() {
                               // Declare variables
@@ -170,7 +176,7 @@
                         }
                         </style>
 
-<a href="{{url_for('schedules')}}"><button  id="scheduals" class="button" style="vertical-align:middle" ><span> To Schedules </span></button></a>
+
                 </div>
                     </div>
 

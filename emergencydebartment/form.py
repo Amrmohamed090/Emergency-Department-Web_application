@@ -1,4 +1,5 @@
 
+from email import message
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, SubmitField, BooleanField, EmailField,IntegerField,DateField, RadioField, MultipleFileField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
@@ -111,3 +112,10 @@ class ReportForm(FlaskForm):
                     raise ValidationError('SSN must be a 14 digit number')
             except ValueError:
                 raise ValidationError('SSN must be a 14 digit number')
+
+
+class MessageForm(FlaskForm):
+    title = StringField('TITLE',validators=[DataRequired(), Length(min=1, max=30)])
+    message = StringField('MESSAGE', validators=[DataRequired(), Length(min=1, max=30)])
+    submit = SubmitField('Send')
+    
