@@ -397,6 +397,11 @@ def profile(doctor_id):
     doctor = Doctor.query.get_or_404(doctor_id)
     reports = doctor.examination
     patients_names_list = list()
+     
+    doctor_times = doctor.time_shift
+    time_list = list()
+    if doctor_times:
+        time_list = doctor_times.split('$')
    
     for report in reports:
         if report.patient_id != 99999999999999:patients_names_list.append(Patient.query.get(report.patient_id).Fname + " "+Patient.query.get(report.patient_id).Lname )
@@ -404,7 +409,7 @@ def profile(doctor_id):
 
     print(patients_names_list)
     
-    return render_template('profile.html', doctor= doctor, reports_names= list(zip(reports, patients_names_list)))
+    return render_template('profile.html', doctor= doctor, reports_names= list(zip(reports, patients_names_list)), time_list=time_list)
 ##############################################
 #PROFILE OF A patient
 @app.route("/profile_patient/<int:patient_id>")

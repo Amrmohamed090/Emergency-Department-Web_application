@@ -16,6 +16,7 @@
                     <h2>Name:<i class="textgold">{{ doctor.Fname }} {{ doctor.Lname }}</i></h2>
                     <h2>Department:<i class="textgold">{{doctor.speciallity}}</i> </h2>
                     <h2>SSN:<i class="textgold">{{doctor.ssn}}</i></h2>
+                    <h2>Work Shifts: <i class="textgold">{% for i in time_list %}{% if not loop.last %}{{ i + "      ___   "}}{% else %}{{ i }}{% endif %} {% endfor %}</i></h2>
 
                 </div>
                 
@@ -30,7 +31,7 @@
             
             <!--If the doctor didnt have reports to show-->
             {% if not reports_names %}
-            <div class="box backwhite">
+            <div class="box backwhite text-center" style="color:white ;"> 
                 There is no reports to show for {{ doctor.Fname }}  {{ doctor.Lname }}
               
             </div>
