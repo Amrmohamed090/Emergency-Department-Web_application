@@ -20,7 +20,7 @@
                             <thead>
                                 <tr class="header">
                                     
-                                    
+                                    <th scope="col">Date</th>
                                     <th scope="col">Name</th>
                                     
                                     
@@ -41,7 +41,7 @@
                                 <tr class='clickable-row' data-href="{{ url_for('profile', doctor_id=doctor.id) }}">
                                     
                                     
-                                    
+                                  <td>{{message.date.strftime("%Y-%m-%d, %H:%M")}}</td>
                                     {% if doctor.Sname %}
                                     <td>{{doctor.Fname}}  {{doctor.Sname}}  {{doctor.Lname}}</td>
                                     {% else %}
