@@ -44,11 +44,15 @@ when you create an emergency report, the ssn is not required if the patient is a
 ##
 
 Admin:
+
 admin@admin.com
-Pass:admin
+
+Password:admin
 
 Doctor:
+
 house@doctor.com
+
 Password:doctor
 
 ##
