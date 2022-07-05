@@ -41,6 +41,7 @@ the patient have an email and password in order to be able to access his profile
 when you create an emergency report, the ssn is not required if the patient is anonymos but the doctor get a warning that he should register the patient as soon as possible and so the medical report will automatically be assigned to the patient
  
 
+##
 
 Admin:
 admin@admin.com
@@ -50,12 +51,14 @@ Doctor:
 house@doctor.com
 Password:doctor
 
+##
 
+When patient a patient is registered and the (email and password) fields is left empty:
 
-When register a patient
 Defualt email: firstname+last 4 digit in ssn @hospital.com
 Defualtpass: ssn
 
+##
 
 instructions to run this program:
 
