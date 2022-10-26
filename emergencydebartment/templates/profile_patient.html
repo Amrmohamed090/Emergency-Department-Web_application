@@ -21,7 +21,7 @@
                            
                                <div class="textblue">            
                                    <h2>Name:<i class="textgold">{{ patient.Fname }} {{ patient.Lname }}</i></h2>
-                                  <h2>Department:<i class="textgold">{{patient.speciality}}</i> </h2>
+                                  <h2>Registeration date:<i class="textgold">{{patient.date.strftime("%Y-%m-%d, %H:%M")}}</i> </h2>
                                   <h2>SSN:<i class="textgold">{{patient.ssn}}</i></h2>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
             
             <!--If the patient didnt have reports to show-->
             {% if not reports_names %}
-            <div class="box backwhite">
+            <div class="box backwhite textgold">
                 There is no reports to show for {{ patient.Fname }}  {{ patient.Lname }}
               
             </div>

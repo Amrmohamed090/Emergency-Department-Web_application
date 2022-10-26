@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+ {% extends "layout.html" %}
 {% block content %}
 <legend class="border-bottom mb-4 legend align-text-center">Doctors Table</legend>
         <div class="content">
@@ -10,8 +10,8 @@
                         <input type="text" id="nameInput" onkeyup="nameF()" style="margin: 1vh;" placeholder="Search for names..">
                     </div>
                         <div class="row justify-content-center" >
-                            <input type="text" id="specialityInput" onkeyup="speciality()" placeholder="Search for Department..">
-                            <input type="text" id="myInput" onkeyup="ssn()" placeholder="Search for SSN..">
+                            <input type="text" id="specialityInput" style="width: 82%;" onkeyup="speciality()" placeholder="Search for Department..">
+                            
                         </div>
                         <table id="myTable" class="table table-bordered table-responsive" >
                             <thead>
@@ -22,7 +22,7 @@
                                     
                                     
                                     
-                                    <th scope="col" >speciality</th>
+                                    <th scope="col" >Department</th>
                                     <th scope="col" >phone</th>
                                     
                                     <th scope="col" >Message</th>
@@ -46,7 +46,12 @@
                                    
                                     
                                     <td>{{doctor.speciallity}}</td>
-                                    <td>{{doctor.phone}}</td>
+
+                                    {% if doctor.phone != "Unknown" %}
+                                    <td><a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="tel:+2{{doctor.phone}} "> <i class="fa-solid fa-phone"></i> {{doctor.phone}}</a></a></td>
+                                    {% else %}
+                                    <td>{{doctor.phone}}   phone</td>
+                                    {% endif %}
                                     
                                     
                                     
@@ -68,7 +73,7 @@
                             
                               // Loop through all table rows, and hide those who don't match the search query
                               for (i = 0; i < tr.length; i++) {
-                                td = tr[i].getElementsByTagName("td")[1];
+                                td = tr[i].getElementsByTagName("td")[0];
                                 if (td) {
                                   txtValue = td.textContent || td.innerText;
                                   if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -89,7 +94,7 @@
                             
                               // Loop through all table rows, and hide those who don't match the search query
                               for (i = 0; i < tr.length; i++) {
-                                td = tr[i].getElementsByTagName("td")[4];
+                                td = tr[i].getElementsByTagName("td")[1];
                                 if (td) {
                                   txtValue = td.textContent || td.innerText;
                                   if (txtValue.toUpperCase().indexOf(filter) > -1) {

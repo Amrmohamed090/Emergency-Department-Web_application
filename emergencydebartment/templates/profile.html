@@ -66,8 +66,9 @@
                                 <td>{{name}}</td>
                                 
                                 <td>{% if report.patient_ssn != 99999999999999 %}
-                                    <a href="{{ url_for('search_patient' , patient_ssn = report.patient_ssn)}}" class="stretched-link"> 
-                                    {{report.patient_ssn}}</a>
+                                    
+                                        <a class="calling_btn btn rounded-pill main-btn " style="color:white ;" href="{{ url_for('search_patient' , patient_ssn = report.patient_ssn)}} "> <i class="fa-solid fa-paste"></i> {{report.patient_ssn}}</a></a>
+                                    </a>
                                         {% else %}
                                     unknown ssn
                                     {% endif %}
