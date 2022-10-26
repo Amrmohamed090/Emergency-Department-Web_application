@@ -42,7 +42,7 @@ when you create an emergency report, the ssn is not required if the patient is a
 ##
 Some screenshots
 
-![plot][./screenshots/1.PGN]
+<img src="./screenshots/2.PNG" alt="Alt text" title="Optional title">
 
 ##
 
