@@ -39,14 +39,18 @@ the doctor have authority to:
 the patient have an email and password in order to be able to access his profile and get all of his medical reports
 
 when you create an emergency report, the ssn is not required if the patient is anonymos but the doctor get a warning that he should register the patient as soon as possible and so the medical report will automatically be assigned to the patient
+the instructions for using and installation IS BELLOW. 
 ##
 Some screenshots
 
 <img src="./screenshots/Capture.PNG" alt="Alt text" title="Optional title">
-<img src="./screenshots/1.PNG" alt="Alt text" title="Optional title">
+##
 <img src="./screenshots/2.PNG" alt="Alt text" title="Optional title">
+##
 <img src="./screenshots/3.PNG" alt="Alt text" title="Optional title">
+##
 <img src="./screenshots/4.PNG" alt="Alt text" title="Optional title">
+##
 <img src="./screenshots/6.PNG" alt="Alt text" title="Optional title">
 
 ##
