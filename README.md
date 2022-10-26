@@ -43,15 +43,23 @@ the instructions for using and installation IS BELLOW.
 ##
 Some screenshots
 
-<img src="./screenshots/Capture.PNG" alt="Alt text" title="Optional title">
+<img src="./screenshots/Capture.PNG" alt="Alt text" title="Home page for unauthenticated users">
+
 ##
-<img src="./screenshots/2.PNG" alt="Alt text" title="Optional title">
+
+<img src="./screenshots/2.PNG" alt="Alt text" title="Admins Dashboard">
+
 ##
-<img src="./screenshots/3.PNG" alt="Alt text" title="Optional title">
+
+<img src="./screenshots/3.PNG" alt="Alt text" title="Registering new patient">
+
 ##
-<img src="./screenshots/4.PNG" alt="Alt text" title="Optional title">
+
+<img src="./screenshots/4.PNG" alt="Alt text" title="Creating an emergency report">
+
 ##
-<img src="./screenshots/6.PNG" alt="Alt text" title="Optional title">
+
+<img src="./screenshots/6.PNG" alt="Alt text" title="List of registered doctors for contacts">
 
 ##
 
