@@ -1,4 +1,4 @@
-# Emergency-Department-Team19
+# Emergency-Department
 the web app was made using:
 1-flask: as a backend framework
 2-html css javascript bootstrab for the frontend
